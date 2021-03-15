@@ -14,4 +14,20 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * One to many relationship, belongs to
+     */
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Many to many relationship
+     */
+
+    public function expenses() {
+        return $this->belongsToMany(Expense::class);
+    }
 }

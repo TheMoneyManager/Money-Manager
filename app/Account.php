@@ -14,4 +14,20 @@ class Account extends Model
     protected $fillable = [
         'name', 'description', 'balance',
     ];
+
+    /**
+     * One to many relationship
+     */
+
+    public function expenses() {
+        return $this->hasMany(Expense::class);
+    }
+
+    /**
+     * One to many relationship, belongs to
+     */
+
+     public function user() {
+         return $this->belongsTo(User::class);
+     }
 }

@@ -2,13 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Account;
+use App\Expense;
 use Faker\Generator as Faker;
 
-$factory->define(Account::class, function (Faker $faker) {
+$factory->define(Expense::class, function (Faker $faker) {
     return [
-        'name' => $faker->word(),
+        'amount' => $faker->randomFloat(2, 100, 9999),
         'description' => $faker->paragraph(),
-        'balance' => $faker->randomFloat(2, 100, 99999),
     ];
 });

@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use App\User;
 
 class UserSeeder extends Seeder
@@ -17,30 +14,18 @@ class UserSeeder extends Seeder
     {
         $count = 20;            // +3 users
 
-        DB::table('users')->insert([
-            'name' => 'John Doe',
+        factory(User::class)->create([
             'email' => 'user@test.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('asdf'),
-            'remember_token' => Str::random(10),
             'role' => 'user',
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'Zane Stroman',
+        factory(User::class)->create([
             'email' => 'admin@test.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('asdf'),
-            'remember_token' => Str::random(10),
             'role' => 'admin',
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'Rachel Zulauf',
+        factory(User::class)->create([
             'email' => 'super@test.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('asdf'),
-            'remember_token' => Str::random(10),
             'role' => 'super',
         ]);
 

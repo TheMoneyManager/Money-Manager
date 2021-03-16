@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Database\fFctories\UserFactory;
 use Illuminate\Support\Facades\DB;
 
 class CategoryExpenseSeeder extends Seeder

@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<h1>Sign up</h1>
 
 {{-- Validator section --}}
 @if ($errors->any())
@@ -14,39 +13,43 @@
     </div>
 @endif
 
-
-<form action="{{ route('auth.do-register') }}" method="POST">
-    @csrf
-    <table>
-        <tbody>
-            <tr>
-                <th>Name</th>
-                <th>
-                    <input type="text" name="name" id="">
-                </th>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <th>
-                    <input type="text" name="email" id="">
-                </th>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <th>
-                    <input type="password" name="password" id="">
-                </th>
-            </tr>
-            <tr>
-                <th>Password confirmation</th>
-                <th>
-                    <input type="password" name="password_confirmation" id="">
-                </th>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <button type="submit">Create user</button>
-</form>
+<div class="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900 register">
+    <div class="container mx-auto">
+        <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-md shadow-sm">
+            <div class="text-center">
+                <img src="img/Logo@2x.png" class="h-28 mx-auto">
+            </div>
+            <div class="m-7">
+                <form action="{{ route('auth.do-register') }}" method="POST" id="form">
+                    @csrf
+                    <div class="mb-6">
+                        <label for="name" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Nombre</label>
+                        <input type="text" name="name" id="name" placeholder="John Doe" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">E-mail</label>
+                        <input type="email" name="email" id="email" placeholder="you@company.com" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Password</label>
+                        <input type="password" name="password" id="password" placeholder="**********" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Confirm Password</label>
+                        <input type="password" name="password_confirmation" id="password" placeholder="**********" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                    </div>
+                    <div class="mb-6">
+                        <button type="submit" class="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Crear cuenta</button>
+                    </div>
+                    <p class="text-base text-center text-gray-400" id="result">
+                    </p>
+                </form>
+                <p class="text-base text-center text-green-400">¿Ya tienes una cuenta?
+                    <a href="{{ route('auth.login') }}">Inicia sesión</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

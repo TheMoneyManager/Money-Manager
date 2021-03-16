@@ -4,6 +4,7 @@
 
 use App\User;
 use App\Account;
+use App\Category;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +32,19 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 $factory->afterCreating(User::class, function($user, $faker) {
-    for ($i = 0; $i < 5; $i+=1) {
+
+    // accounts table entries
+    $accounts = 5;
+
+    for ($i = 0; $i < $accounts; $i += 1) {
         $user->accounts()->save(factory(Account::class)->make());
     }
+
+    // categories table entries
+    $categories = 5;
+
+    for ($i = 0; $i < $categories; $i += 1) {
+        $user->accounts()->save(factory(Category::class)->make());
+    }
+
 });

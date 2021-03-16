@@ -35,6 +35,7 @@ class AuthController extends Controller
     public function doLogin(Request $req){
         $credentials = $req->only('email', 'password');
         if(Auth::attempt($credentials)){
+            return "Login exitoso. Comenta este alert";
             //return redirect()->route('dashboard.index');
         }
         return redirect()->back();

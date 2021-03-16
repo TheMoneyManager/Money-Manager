@@ -24,9 +24,9 @@
                 <tbody>
                     @foreach ($expenses as $item)
                         <tr>
-                            <td>{{ $item->created_at }}</td>
-                            <td>{{ $item->account_id }}</td>
-                            <td>{{ $item->categories_expenses  }}</td> 
+                            <td>{{ $item->date }}</td>
+                            <td>{{ $item->account }}</td>
+                            <td>{{ $item->categorie  }}</td> 
                             <td>{{ $item->amount }}</td>
                             <td>{{ $item->description }}</td>
                         </tr>

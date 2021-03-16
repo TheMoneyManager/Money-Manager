@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="/css/app.css" rel="stylesheet">
 
         <title>Laravel</title>
 
@@ -12,7 +13,6 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -63,7 +63,7 @@
             }
         </style>
     </head>
-    <body>
+    <body class="bg-gray-400">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

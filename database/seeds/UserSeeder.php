@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $count = 20;            // +3 users
+        $count = intval(env('SEED_USERS', 20));            // +3 users
 
         factory(User::class)->create([
             'email' => 'user@test.com',

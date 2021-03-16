@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
+use App\Account;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -27,4 +28,10 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
         'role' => $faker->randomElement(['user', 'admin', 'super']),
     ];
+});
+
+$factory->afterCreating(User::class, function($user, $faker) {
+    for ($i = 0; $i < 5; $i+=1) {
+        $user->accounts()->save(factory(Account::class)->make());
+    }
 });

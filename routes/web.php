@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('auth.register');
 });
 
+
+//Route::resource('expenses', 'DashboardController@index');
+
+//TODO: Implementar sesión del usuario
+Route::get('dashboard', 'DashboardController@index') 
+    -> name('dashboard.index');
+
 /* AuthController */
 Route::get('register', 'AuthController@register') 
     -> name('auth.register');

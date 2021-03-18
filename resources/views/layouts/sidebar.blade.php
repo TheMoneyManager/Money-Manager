@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="/css/app.css" rel="stylesheet">
-    <title>MoneyManager</title>
-</head>
+@extends('layouts.header')
+
 <div class="flex h-screen">
     <div class="p-6 border-r w-64 border-gray-200 bg-gray-700">
         <div class="text-center flex mb-8">

@@ -13,7 +13,7 @@ class CreateCategoriesExpensesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories_expenses', function (Blueprint $table) {
+        Schema::create('category_expense', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('expense_id');

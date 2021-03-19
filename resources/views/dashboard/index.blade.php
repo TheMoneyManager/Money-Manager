@@ -1,10 +1,8 @@
 @extends('layouts.sidebar')
 
 @section('content')
-{{-- TODO: Agregar sidebar --}}
 
-
-<div class="container mx-auto px-4 py-4">
+<div class="container mx-auto">
     <div class="py-10 divide-y divide-gray-300">
         <div>
             @auth
@@ -33,7 +31,7 @@
                             <tr>
                                 <td>{{ $item->date }}</td>
                                 <td>{{ $item->account }}</td>
-                                <td>{{ $item->categorie  }}</td>
+                                <td>{{ $item->category  }}</td>
                                 <td>{{ $item->amount }}</td>
                                 <td>{{ $item->description }}</td>
                             </tr>

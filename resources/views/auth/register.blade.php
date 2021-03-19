@@ -1,6 +1,6 @@
 @extends('layouts.header')
 
-@section('content')
+@section('content1')
 
 <div class="flex items-center min-h-screen bg-gray-50 dark:bg-gray-900 register">
     <div class="container mx-auto">

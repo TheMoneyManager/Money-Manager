@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Expense;
+use Illuminate\Support\Facades\Auth;
 
 class ExpensesController extends Controller
 {
@@ -13,6 +15,20 @@ class ExpensesController extends Controller
      */
     public function index()
     {
+        $user_id = Auth::user()->id;
+        $expenses = Expense::join('users', 'users.id', "=", "expenses.user_id")
+                    ->join('accounts', 'accounts.id', "=", "expenses.account_id")
+                    ->join('categories_expenses', 'categories_expenses.expense_id', '=', "expenses.id")
+                    ->join('categories', 'categories.id', '=', 'categories_expenses.category_id')
+                    ->where('users.id', $user_id)
+                    ->get([
+                            'expenses.created_at as date',
+                            'expenses.account_id as account',
+                            'categories.name as categorie',
+                            'expenses.amount as amount',
+                            'expenses.description as description',
+                         ]);
+        return view('expenses.index', ['expenses' => $expenses]);
     }
 
     /**
@@ -22,7 +38,7 @@ class ExpensesController extends Controller
      */
     public function create()
     {
-        //
+        return view('expenses.create');
     }
 
     /**
@@ -33,7 +49,9 @@ class ExpensesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $all = $request->all();
+        Expense::create($all);
+        return redirect()->route('gastos.index');
     }
 
     /**

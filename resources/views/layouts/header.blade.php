@@ -8,5 +8,5 @@
     <title>MoneyManager</title>
 </head>
 <body>
-    @yield('content')
+    @yield('content1')
 </body>

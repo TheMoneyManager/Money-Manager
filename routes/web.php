@@ -18,13 +18,15 @@ Route::get('/', function () {
 });
 
 /* AuthController */
-Route::get('register', 'AuthController@register') 
+Route::get('register', 'AuthController@register')
     -> name('auth.register');
-Route::post('register', 'AuthController@doRegister') 
+Route::post('register', 'AuthController@doRegister')
     -> name('auth.do-register');
-Route::get('login', 'AuthController@login') 
+Route::get('login', 'AuthController@login')
 -> name('auth.login');
-Route::post('login', 'AuthController@doLogin') 
+Route::post('login', 'AuthController@doLogin')
     -> name('auth.do-login');
-Route::any('logout', 'AuthController@logout') 
+Route::any('logout', 'AuthController@logout')
     -> name('auth.logout');
+
+Route::get('/user', function(){return view('user.configuration');});

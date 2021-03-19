@@ -36,6 +36,7 @@ Route::post('login', 'AuthController@doLogin')
 Route::any('logout', 'AuthController@logout')
     -> name('auth.logout');
 
-Route::get('/user', function(){return view('user.configuration');});
+Route::resource('user', 'UsersController');
+
 Route::get('/cuentas', function(){return view('cuentas.index');});
 Route::get('/editCuentas', function(){return view('cuentas.edit');});

@@ -12,20 +12,20 @@
         </div>
         <ul>
             <li class="flex mb-8">
-                <span class="self-center text-white">Dashboard</span>
+                <a href="{{ route('dashboard.index') }}" class="self-center text-white hover:text-green-700">Dashboard</a>
             </li>
             <li class="flex mb-8">
-                <span class="self-center text-white">Cuentas</span>
+                <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Cuentas</a>
             </li>
             <li class="flex mb-8">
-                <span class="self-center text-white">Gastos</span>
+                <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Gastos</a>
             </li>
             <li class="flex mb-8">
-                <span class="self-center text-white">Configuración</span>
+                <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Configuración</a>
             </li>
             <div class="text-center flex mt-20">
                 <li class="flex mb-8">
-                    <a href="{{ route('auth.logout') }}" class="self-center text-white">Cerrar Sesión</a>
+                    <a href="{{ route('auth.logout') }}" class="self-center text-white hover:text-red-700">Cerrar Sesión</a>
                 </li>
             </div>
         </ul>

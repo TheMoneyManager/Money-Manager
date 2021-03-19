@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -14,7 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('')
+        $user = Auth::user();
+        return view('user.configuration', ['user' => $user]);
     }
 
     /**
@@ -67,9 +70,18 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $arr = $request->input();
+        $user->name = $arr['nombre'];
+        $user->email = $arr['email'];
+
+        if($arr['nuevaContrasenia'] != null && $arr['nuevaContrasenia'] == $arr['confirmacionContrasenia']){
+            $user->password = Hash::make($arr['nuevaContrasenia']);
+        }
+
+        $user->save();
+        return redirect()->route('user.index');
     }
 
     /**
@@ -78,8 +90,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('auth.register');
     }
 }

@@ -13,7 +13,7 @@
         </div>
         <div></div>
     </div>
-    
+
     <div class="grid grid-cols-3 gap-6">
         <div class="col-span-2 divide-y divide-gray-300">
             <p class="text-3xl uppercase text-gray-400 text-center py-4">Últimos gastos</p>
@@ -33,7 +33,7 @@
                             <tr>
                                 <td>{{ $item->date }}</td>
                                 <td>{{ $item->account }}</td>
-                                <td>{{ $item->categorie  }}</td> 
+                                <td>{{ $item->categorie  }}</td>
                                 <td>{{ $item->amount }}</td>
                                 <td>{{ $item->description }}</td>
                             </tr>

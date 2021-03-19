@@ -21,7 +21,7 @@ Route::get('/', function () {
 //Route::resource('expenses', 'DashboardController@index');
 
 //TODO: Implementar sesión del usuario
-Route::get('dashboard', 'DashboardController@index') 
+Route::get('dashboard', 'DashboardController@index')
     -> name('dashboard.index');
 
 /* AuthController */
@@ -37,3 +37,5 @@ Route::any('logout', 'AuthController@logout')
     -> name('auth.logout');
 
 Route::get('/user', function(){return view('user.configuration');});
+Route::get('/cuentas', function(){return view('cuentas.index');});
+Route::get('/editCuentas', function(){return view('cuentas.edit');});

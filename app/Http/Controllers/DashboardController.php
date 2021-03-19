@@ -22,7 +22,7 @@ class DashboardController extends Controller
                     ->get([
                             'expenses.created_at as date',
                             'expenses.account_id as account',
-                            'categories.name as categorie',
+                            'categories.name as category',
                             'expenses.amount as amount',
                             'expenses.description as description',
                          ]);

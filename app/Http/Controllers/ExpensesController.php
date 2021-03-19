@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Expense;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class ExpensesController extends Controller
@@ -38,7 +39,11 @@ class ExpensesController extends Controller
      */
     public function create()
     {
-        return view('expenses.create');
+
+        $user_id = Auth::user()->id;
+        $categories = User::find($user_id)->categories;
+        $accounts = User::find($user_id)->accounts;
+        return view('expenses.create', ['accounts' => $accounts, 'categories' => $categories]);
     }
 
     /**
@@ -51,7 +56,7 @@ class ExpensesController extends Controller
     {
         $all = $request->all();
         Expense::create($all);
-        return redirect()->route('gastos.index');
+        return redirect()->route('expenses.index');
     }
 
     /**

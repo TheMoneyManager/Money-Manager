@@ -12,7 +12,7 @@
         </div>
         <ul>
             <li class="flex mb-8">
-                <span class="self-center uppercase text-white">Dashboard</span>
+                <a href="{{ route('dashboard.index') }}" class="self-center uppercase text-white">Dashboard</a>
             </li>
             <li class="flex mb-8">
                 <span class="self-center uppercase text-white">Cuentas</span>

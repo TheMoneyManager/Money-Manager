@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,4 @@ Route::any('logout', 'AuthController@logout')
     -> name('auth.logout');
 
 Route::resource('user', 'UsersController');
-
-Route::get('/cuentas', function(){return view('cuentas.index');});
-Route::get('/editCuentas', function(){return view('cuentas.edit');});
+Route::resource('account', 'AccountController');

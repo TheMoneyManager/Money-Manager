@@ -15,7 +15,7 @@
                 <a href="{{ route('dashboard.index') }}" class="self-center text-white hover:text-green-700">Dashboard</a>
             </li>
             <li class="flex mb-8">
-                <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Cuentas</a>
+                <a href="{{ route('account.index') }}" class="self-center text-white hover:text-green-700">Cuentas</a>
             </li>
             <li class="flex mb-8">
                 <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Gastos</a>

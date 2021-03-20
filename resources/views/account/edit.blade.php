@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mx-auto px-4 py-4">
         <div class="w-10/12 h-20 mx-auto border-b-2 ">
-            <h1 class="text-gray-600 font-bold text-4xl pt-5">CUENTAS</h1>
+            <h1 class="text-gray-600 font-bold text-4xl pt-5">EDITAR CUENTA</h1>
         </div>
 
         <div class="w-6/12 h-4/6 mx-auto mt-20">

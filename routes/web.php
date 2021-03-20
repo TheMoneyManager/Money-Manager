@@ -25,15 +25,21 @@ Route::get('/', function () {
 Route::get('dashboard', 'DashboardController@index')
     -> name('dashboard.index');
 
+Route::resource('categories', 'CategoryController');
+
+Route::resource('expenses', 'ExpenseController'); // No existe archivo
+
 /* AuthController */
 Route::get('register', 'AuthController@register')
     -> name('auth.register');
 Route::post('register', 'AuthController@doRegister')
     -> name('auth.do-register');
+
 Route::get('login', 'AuthController@login')
 -> name('auth.login');
 Route::post('login', 'AuthController@doLogin')
     -> name('auth.do-login');
+
 Route::any('logout', 'AuthController@logout')
     -> name('auth.logout');
 

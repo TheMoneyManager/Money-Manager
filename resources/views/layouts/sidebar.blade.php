@@ -5,7 +5,7 @@
         <div class="text-center flex mb-8">
             <img src="img/Logo@2x.png" class="h-28 mx-auto">
         </div>
-        <div class="text-center flex mb-8">
+        <div class="text-center text-white flex mb-8">
             @auth
                 {{ auth()->user()->name }}
             @endauth

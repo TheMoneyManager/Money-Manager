@@ -27,7 +27,7 @@ class CategoryExpenseSeeder extends Seeder
             $max_expense_id = ($i) * $expenses;
 
             for ($j = 1; $j <= rand(0, $bindings); $j += 1) {
-                DB::table('categories_expenses')->insert([
+                DB::table('category_expense')->insert([
                     'category_id' => rand($min_category_id, $max_category_id),
                     'expense_id' => rand($min_expense_id, $max_expense_id),
                     'created_at' => now(),

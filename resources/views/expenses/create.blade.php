@@ -25,18 +25,18 @@
                 </div>
                 <div class="w-full">
                     <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Monto</h3>
-                    <input type="text" placeholder="$300" name="amount" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <input type="text" placeholder="$300" name="amount" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400">
                 </div>
             </div>
 
             <h3 class="text-gray-600 block w-2/12 mt-10 font-medium">Descripción</h3>
-            <textarea name="description" placeholder="Visita al restaurante semanal" cols="30" rows="10" class="w-full rounded-lg bg-gray-100 border-0 inline-block"></textarea>
+            <textarea name="description" placeholder="Visita al restaurante semanal" cols="30" rows="10" class="w-full rounded-lg bg-gray-100 border-0 inline-block placeholder-gray-400"></textarea>
 
             <div class="flex mt-3">
                 <p class="text-gray-600 block w-6/12 font-medium text-sm">Categorías de gasto</p>
                 @foreach ($categories as $category)
                     <label class="flex items-center">
-                    <input value="{{$category->id}}" name="categories" type="checkbox" class="form-checkbox text-green-600 border-solid border-green-600 ml-5">
+                    <input value="{{$category->id}}" name="categories[]" type="checkbox" class="form-checkbox text-green-600 border-solid border-green-600 ml-5 placeholder-gray-400">
                     <span class="ml-2 text-sm">{{ $category->name }}</span>
                     </label>
                 @endforeach

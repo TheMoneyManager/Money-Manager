@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Expense;
 use App\User;
@@ -19,8 +20,8 @@ class ExpensesController extends Controller
         $user_id = Auth::user()->id;
         $expenses = Expense::join('users', 'users.id', "=", "expenses.user_id")
                     ->join('accounts', 'accounts.id', "=", "expenses.account_id")
-                    ->join('categories_expenses', 'categories_expenses.expense_id', '=', "expenses.id")
-                    ->join('categories', 'categories.id', '=', 'categories_expenses.category_id')
+                    ->join('category_expense', 'category_expense.expense_id', '=', "expenses.id")
+                    ->join('categories', 'categories.id', '=', 'category_expense.category_id')
                     ->where('users.id', $user_id)
                     ->get([
                             'expenses.created_at as date',
@@ -55,7 +56,12 @@ class ExpensesController extends Controller
     public function store(Request $request)
     {
         $all = $request->all();
-        Expense::create($all);
+        $categories = $all['categories'];
+        $expense = Expense::create($all);
+        foreach($categories as $category_id){
+            $category = Category::find($category_id);
+            $expense->categories()->attach($category);
+        }
         return redirect()->route('expenses.index');
     }
 

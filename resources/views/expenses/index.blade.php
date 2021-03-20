@@ -15,7 +15,7 @@
                         Registrar nuevo gasto
                     </a>
             </div>
-            <div class="py-12">
+            <div>
                 <table class="table-fixed">
                     <thead>
                     <tr class="bg-gray-100 h-16">
@@ -26,7 +26,7 @@
                         <th class="w-4/12">DESCRIPCIÓN</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         @foreach ($expenses as $item)
                             <tr>
                                 <td>{{ $item->date }}</td>

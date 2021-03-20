@@ -5,11 +5,13 @@
         <div class="text-center flex mb-8">
             <img src="img/Logo@2x.png" class="h-28 mx-auto">
         </div>
-        <div class="text-center text-white flex mb-8">
+
+        <div class="self-center uppercase flex mb-16 text-white">
             @auth
                 {{ auth()->user()->name }}
             @endauth
         </div>
+        
         <ul>
             <li class="flex mb-8">
                 <a href="{{ route('dashboard.index') }}" class="self-center text-white hover:text-green-700">Dashboard</a>

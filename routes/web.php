@@ -34,6 +34,7 @@ Route::get('register', 'AuthController@register')
 Route::post('register', 'AuthController@doRegister')
     -> name('auth.do-register');
 
+
 Route::get('login', 'AuthController@login')
 -> name('auth.login');
 Route::post('login', 'AuthController@doLogin')

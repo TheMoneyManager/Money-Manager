@@ -16,8 +16,8 @@ class DashboardController extends Controller
         $user_id = Auth::user()->id;
         $expenses = Expense::join('users', 'users.id', "=", "expenses.user_id")
                     ->join('accounts', 'accounts.id', "=", "expenses.account_id")
-                    ->join('categories_expenses', 'categories_expenses.expense_id', '=', "expenses.id")
-                    ->join('categories', 'categories.id', '=', 'categories_expenses.category_id')
+                    ->join('category_expense', 'category_expense.expense_id', '=', "expenses.id")
+                    ->join('categories', 'categories.id', '=', 'category_expense.category_id')
                     ->where('users.id', $user_id)
                     ->get([
                             'expenses.created_at as date',

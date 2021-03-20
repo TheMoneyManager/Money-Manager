@@ -12,7 +12,7 @@ class Expense extends Model
      * @var array
      */
     protected $fillable = [
-        'amount', 'description',
+        'amount', 'description', 'user_id', 'account_id',
     ];
 
     /**

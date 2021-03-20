@@ -45,7 +45,7 @@
             </div>
             <div class="text-center py-10">
                 <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none">
-                    <a href="{{ route('auth.register')}}" class="text-sm">
+                    <a href="{{ route('expenses.create')}}" class="text-sm">
                         REGISTRAR GASTO
                     </a>
                 </button>

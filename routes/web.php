@@ -26,7 +26,7 @@ Route::get('dashboard', 'DashboardController@index')
 
 Route::resource('categories', 'CategoryController');
 
-Route::resource('expenses', 'ExpenseController'); // No existe archivo
+Route::resource('expenses', 'ExpensesController'); // No existe archivo
 
 /* AuthController */
 Route::get('register', 'AuthController@register')

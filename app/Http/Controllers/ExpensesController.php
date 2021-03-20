@@ -18,18 +18,9 @@ class ExpensesController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $expenses = Expense::join('users', 'users.id', "=", "expenses.user_id")
-                    ->join('accounts', 'accounts.id', "=", "expenses.account_id")
-                    ->join('category_expense', 'category_expense.expense_id', '=', "expenses.id")
-                    ->join('categories', 'categories.id', '=', 'category_expense.category_id')
-                    ->where('users.id', $user_id)
-                    ->get([
-                            'expenses.created_at as date',
-                            'expenses.account_id as account',
-                            'categories.name as categorie',
-                            'expenses.amount as amount',
-                            'expenses.description as description',
-                         ]);
+        $user = User::find($user_id);
+        $expenses = $user->expenses()->orderBy('created_at', 'desc')->get();
+
         return view('expenses.index', ['expenses' => $expenses]);
     }
 

@@ -27,13 +27,17 @@
                     </tr>
                     </thead>
                     <tbody class="text-center">
-                        @foreach ($expenses as $item)
+                        @foreach ($expenses as $expense)
                             <tr>
-                                <td>{{ $item->date }}</td>
-                                <td>{{ $item->account }}</td>
-                                <td>{{ $item->categorie  }}</td>
-                                <td>{{ $item->amount }}</td>
-                                <td>{{ $item->description }}</td>
+                                <td>{{ date_format($expense->created_at, "d/m/y") }}</td>
+                                <td>{{ $expense->account->name }}</td>
+                                <td>
+                                    @foreach ($expense->categories as $category)
+                                    {{ $category->name }}
+                                    @endforeach
+                                </td>
+                                <td>{{ $expense->amount }}</td>
+                                <td>{{ $expense->description }}</td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -27,13 +27,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach ($expenses as $item)
+                        @foreach ($expenses as $expense)
                             <tr>
-                                <td>{{ $item->date }}</td>
-                                <td>{{ $item->account }}</td>
-                                <td>{{ $item->category  }}</td>
-                                <td>{{ $item->amount }}</td>
-                                <td>{{ $item->description }}</td>
+                                <td>{{ date_format($expense->created_at, "d/m/y") }}</td>
+                                <td>{{ $expense->account->name }}</td>
+                                <td>
+                                    @foreach ($expense->categories as $category)
+                                    {{ $category->name }}
+                                    @endforeach
+                                </td>
+                                <td>{{ $expense->amount }}</td>
+                                <td>{{ $expense->description }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -58,16 +62,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Efectivo</td>
-                                <td>300</td>
-                            </tr>
-                            {{-- @foreach ($expenses as $item)
+                            @foreach ($accounts as $account)
                                 <tr>
-                                    <td>{{ $item->date }}</td>
-                                    <td>{{ $item->account }}</td>
+                                    <td>{{ $account->name }}</td>
+                                    <td>${{ $account->balance }}</td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

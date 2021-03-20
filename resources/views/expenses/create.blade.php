@@ -31,7 +31,11 @@
 
             <h3 class="text-gray-600 block w-2/12 mt-10 font-medium">Descripción</h3>
             <textarea name="description" placeholder="Visita al restaurante semanal" cols="30" rows="10" class="w-full rounded-lg bg-gray-100 border-0 inline-block placeholder-gray-400"></textarea>
-
+            <div class="text-right py-5">
+                <a class="text-green-600 underline self-end" href="{{ route('categories.index')}}" class="text-sm">
+                    Ver Categorias
+                </a>
+              </div>
             <div class="flex mt-3">
                 <p class="text-gray-600 block w-6/12 font-medium text-sm">Categorías de gasto</p>
                 @foreach ($categories as $category)

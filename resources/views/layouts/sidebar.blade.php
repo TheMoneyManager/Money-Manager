@@ -11,7 +11,7 @@
                 {{ auth()->user()->name }}
             @endauth
         </div>
-        
+
         <ul>
             <li class="flex mb-8">
                 <a href="{{ route('dashboard.index') }}" class="self-center text-white hover:text-green-700">Dashboard</a>
@@ -20,7 +20,7 @@
                 <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Cuentas</a>
             </li>
             <li class="flex mb-8">
-                <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Gastos</a>
+                <a href="{{ route('expenses.index') }}" class="self-center text-white hover:text-green-700">Gastos</a>
             </li>
             <li class="flex mb-8">
                 <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Configuración</a>

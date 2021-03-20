@@ -5,27 +5,29 @@
         <div class="text-center flex mb-8">
             <img src="img/Logo@2x.png" class="h-28 mx-auto">
         </div>
+
         <div class="self-center uppercase flex mb-16 text-white">
             @auth
                 {{ auth()->user()->name }}
             @endauth
         </div>
+        
         <ul>
             <li class="flex mb-8">
-                <a href="{{ route('dashboard.index') }}" class="self-center uppercase text-white">Dashboard</a>
+                <a href="{{ route('dashboard.index') }}" class="self-center text-white hover:text-green-700">Dashboard</a>
             </li>
             <li class="flex mb-8">
-                <span class="self-center uppercase text-white">Cuentas</span>
+                <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Cuentas</a>
             </li>
             <li class="flex mb-8">
-                <a href="{{ route('expenses.index') }}" class="self-center uppercase text-white">Gastos</a>
+                <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Gastos</a>
             </li>
             <li class="flex mb-8">
-                <span class="self-center uppercase text-white">Configuración</span>
+                <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Configuración</a>
             </li>
             <div class="text-center flex mt-20">
                 <li class="flex mb-8">
-                    <a href="{{ route('auth.logout') }}" class="self-center uppercase text-white">Cerrar Sesión</a>
+                    <a href="{{ route('auth.logout') }}" class="self-center text-white hover:text-red-700">Cerrar Sesión</a>
                 </li>
             </div>
         </ul>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -16,7 +17,7 @@ class AccountController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $accounts = Account::all()->where('users.id', $user_id);
+        $accounts = User::find($user_id)->accounts;
 
         return view('account.index', ['accounts' => $accounts]);
     }
@@ -39,7 +40,15 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $arr = $request->input();
+        $account = new Account();
+        $account->user_id = Auth::user()->id;
+        $account->name = $arr["name"];
+        $account->description = $arr["description"];
+        $account->balance = $arr["balance"];
+        $account->save();
+
+        return redirect()->route('account.index');
     }
 
     /**
@@ -59,9 +68,9 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Account $account)
     {
-        //
+        return view('account.edit', ['account' => $account]);
     }
 
     /**
@@ -71,9 +80,15 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Account $account)
     {
-        //
+        $arr = $request->input();
+        $account->name = $arr['name'];
+        $account->description = $arr['description'];
+        $account->balance = $arr['balance'];
+        $account->save();
+
+        return redirect()->route('account.index');
     }
 
     /**
@@ -82,8 +97,9 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Account $account)
     {
-        //
+        $account->delete();
+        return redirect()->route('account.index');
     }
 }

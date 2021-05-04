@@ -54,25 +54,42 @@
             </div>
         </div>
         <div class="col-span-1 divide-y divide-gray-300 ">
-                <p class="text-3xl uppercase text-gray-400 text-center py-4">Balance de cuentas</p>
-                <div class="py-10">
-                    <table class="table-fixed">
-                        <thead>
-                        <tr class="bg-gray-100 h-16">
-                            <th class="w-2/12">NOMBRE</th>
-                            <th class="w-2/12">SALDO</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+            <div class="shadow-md">
+                <div class="divide-y divide-gray-300">
+                    <div class="">
+                        <p class="text-2xl text-gray-400 ml-10 py-4">Cuentas de banco y tarjetas</p>
+                    </div>
+                    <div class="text-center py-2">
+                        <table class="table-fixed">
                             @foreach ($accounts as $account)
                                 <tr>
-                                    <td>{{ $account->name }}</td>
-                                    <td>${{ $account->balance }}</td>
+                                    <td class="py-6">
+                                        <img src="/img/visa.png" alt="Visa" class="w-14 ml-5 mr-14">
+                                    </td>
+                                    <td>
+                                        <p class="mr-14">
+                                            {{ $account->name }} <br>
+                                            **** **** **** {{substr($account->description, -4)}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <p class="ml-10">
+                                            ${{ $account->balance }}
+                                        </p>
+                                    </td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
+                        </table>
+                    </div>
+                    <div class="text-center py-4">
+                        <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none">
+                            <a href="{{ route('account.index')}}" class="text-sm">
+                                Ver más detalle
+                            </a>
+                        </button>
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
 </div>

@@ -3,6 +3,8 @@
 @section('content')
 
 <div class="container mx-auto">
+    @extends('layouts.notification')
+
     <div class="py-10 divide-y divide-gray-300">
         <div>
             @auth

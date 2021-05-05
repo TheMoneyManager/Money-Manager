@@ -3,7 +3,7 @@
 @section("sidebar")
     <div class="p-6 border-r w-64 border-gray-200 bg-gray-700">
         <div class="text-center flex mb-8">
-            <img src="img/Logo@2x.png" class="h-28 mx-auto">
+            <img src="/img/Logo@2x.png" class="h-28 mx-auto">
         </div>
 
         <div class="self-center uppercase flex mb-16 text-white">

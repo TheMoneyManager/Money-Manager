@@ -6,7 +6,9 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Expense;
 use App\User;
+use App\Account;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NewExpenseNotification;
 
 class ExpensesController extends Controller
 {
@@ -53,6 +55,9 @@ class ExpensesController extends Controller
             $category = Category::find($category_id);
             $expense->categories()->attach($category);
         }
+
+        event(new NewExpenseNotification($expense));
+
         return redirect()->route('expenses.index');
     }
 

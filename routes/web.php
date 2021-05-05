@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NewExpenseNotification;
 use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +47,7 @@ Route::any('logout', 'AuthController@logout')
 
 Route::resource('user', 'UsersController');
 Route::resource('account', 'AccountController');
+
+Route::get('/send/{expense}', function($expense){
+    event(new NewExpenseNotification($expense));
+});

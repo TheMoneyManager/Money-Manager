@@ -17,7 +17,8 @@ class DashboardController extends Controller
         $user = User::find($user_id);
         $expenses = $user->expenses()->orderBy('created_at', 'desc')->limit(5)->get();
         $accounts = $user->accounts()->orderBy('name')->get();
+        $expenses_count =  $user->expenses()->orderBy('created_at', 'desc')->get();
 
-        return view('dashboard.index', ['expenses' => $expenses, 'accounts' => $accounts]);
+        return view('dashboard.index', ['expenses' => $expenses, 'accounts' => $accounts, 'expenses_count' => count($expenses_count)]);
     }
 }

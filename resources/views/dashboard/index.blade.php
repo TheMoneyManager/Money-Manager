@@ -19,7 +19,7 @@
             <div class="shadow-md">
                 <div class="divide-y divide-gray-300">
                     <div>
-                        <p class="text-2xl text-gray-400 text-center py-4">Últimos gastos</p>
+                        <p class="text-2xl text-gray-800 text-center py-4">Últimos gastos</p>
                     </div>
                     <div class="py-10">
                         <table class="table-fixed">
@@ -63,7 +63,7 @@
             <div class="shadow-md">
                 <div class="divide-y divide-gray-300">
                     <div>
-                        <p class="text-2xl text-gray-400 ml-10 py-4">Cuentas de banco y tarjetas</p>
+                        <p class="text-2xl text-gray-800 ml-10 py-4">Cuentas de banco y tarjetas</p>
                     </div>
                     <div class="text-center py-2">
                         <table class="table-fixed">
@@ -97,6 +97,10 @@
                 </div>
             </div>
         </div>
+        <div class="col-span-1">
+            @include('dashboard.components.expenses', ['expenses_count' => $expenses_count])
+        </div>
     </div>
+
 </div>
 @endsection

@@ -15,7 +15,7 @@
     </div>
 
     <div class="grid grid-cols-3 gap-6">
-        <div class="col-span-2">
+        <div class="lg:col-span-2 sm:col-span-3">
             <div class="shadow-md">
                 <div class="divide-y divide-gray-300">
                     <div>
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-1">
+        <div class="lg:col-span-1 sm:col-span-3">
             <div class="shadow-md">
                 <div class="divide-y divide-gray-300">
                     <div>
@@ -97,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-span-1">
+        <div class="lg:col-span-1 sm:col-span-3">
             @include('dashboard.components.expenses', ['expenses_count' => $expenses_count])
         </div>
     </div>

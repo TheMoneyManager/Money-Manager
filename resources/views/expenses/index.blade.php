@@ -10,7 +10,7 @@
 
     <div class="grid grid-cols-3 gap-6">
         <div class="col-span-4 self-center divide-y divide-gray-300">
-            <div class="py-4">
+            <div class="py-2">
                     <a class="text-green-600 underline" href="{{ route('expenses.create')}}">
                         Registrar nuevo gasto
                     </a>

@@ -1,4 +1,4 @@
-<div class="absolute bg-green-100 right-10 top-10 border border-green-400 text-green-700 px-4 py-3 rounded" role="alert">
+<div class="absolute bg-green-100 right-10 top-2 border border-green-400 text-green-700 px-4 py-3 rounded" role="alert">
     <strong class="font-bold text-lg">Actualización en tu cuenta compartida.</strong>
     <p class="block text-base">Se han añadido 100 pesos a tu cuenta</p>
     {{-- <span class="absolute top-0 bottom-0 right-0 px-4 py-3">

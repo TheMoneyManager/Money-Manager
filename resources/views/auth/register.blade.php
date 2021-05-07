@@ -28,7 +28,7 @@
                         <input type="password" name="password_confirmation" id="password" placeholder="**********" required class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                     </div>
                     <div class="mb-6">
-                        <button type="submit" class="w-full px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none">Crear cuenta</button>
+                        <button type="submit" class="w-full px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Crear cuenta</button>
                     </div>
                 </form>
                 <p class="text-base text-center text-green-700">¿Ya tienes una cuenta?

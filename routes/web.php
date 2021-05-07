@@ -26,6 +26,10 @@ Route::get('/', function () {
 Route::get('dashboard', 'DashboardController@index')
     -> name('dashboard.index');
 
+//SuperAdmin Dashboard
+Route::get('dashboard_sa', 'Dashboard_saController@index')
+-> name('dashboard_sa.index');
+
 Route::resource('categories', 'CategoryController');
 
 Route::resource('expenses', 'ExpensesController'); // No existe archivo

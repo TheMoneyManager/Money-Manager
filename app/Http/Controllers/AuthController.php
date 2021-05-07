@@ -35,7 +35,9 @@ class AuthController extends Controller
     public function doLogin(Request $req){
         $credentials = $req->only('email', 'password');
         if(Auth::attempt($credentials)){
-            return redirect()->route('dashboard.index');
+            //return redirect()->route('dashboard.index');
+            //TODO: Ruta dashboard_sp si tiene cuenta de super admin
+            return redirect()->route('dashboard_sa.index');
         }
         return redirect()->back();
     }

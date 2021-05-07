@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.register');
+    return view('auth.login');
 });
 
 
@@ -25,6 +25,10 @@ Route::get('/', function () {
 //TODO: Implementar sesión del usuario
 Route::get('dashboard', 'DashboardController@index')
     -> name('dashboard.index');
+
+//SuperAdmin Dashboard
+Route::get('dashboard_sa', 'Dashboard_saController@index')
+-> name('dashboard_sa.index');
 
 Route::resource('categories', 'CategoryController');
 

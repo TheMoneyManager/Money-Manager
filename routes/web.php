@@ -47,7 +47,11 @@ Route::any('logout', 'AuthController@logout')
 
 Route::resource('user', 'UsersController');
 Route::resource('account', 'AccountController');
+Route::resource('user-account', 'RelAccountUserController');
 
 Route::get('/send/{expense}', function($expense){
     event(new NewExpenseNotification($expense));
 });
+
+Route::get('user-account/{account}/edit', 'RelAccountUserController@edit')->name('user-account.edit');
+Route::get('user-account/{id}/show', 'RelAccountUserController@show')->name('user-account.show');

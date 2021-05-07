@@ -29,6 +29,10 @@ class Account extends Model
         return $this->hasMany(Expense::class);
     }
 
+    public function users(){
+        return $this->belongsToMany(User::class, 'account_user');
+    }
+
     /**
      * One to many relationship, belongs to
      */

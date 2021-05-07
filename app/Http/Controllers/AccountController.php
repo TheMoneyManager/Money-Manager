@@ -62,9 +62,11 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Account $account)
     {
-        //
+        // $users = $account->users()->orderBy('user_id');
+        // ddd($account);
+        // return redirect()->route('user-account.index', ['account' => $account, 'users' => $users]);
     }
 
     /**

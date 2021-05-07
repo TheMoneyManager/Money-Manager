@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function categories() {
         return $this->hasMany(Category::class);
     }
+
+    public function sharedAccount(){
+        return $this->belongsToMany(Account::class, 'account_user');
+    }
 }

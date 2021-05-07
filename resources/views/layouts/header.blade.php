@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/css/app.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Josefin Sans' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2fc9b53a99.js" crossorigin="anonymous"></script>
     <title>MoneyManager</title>
 </head>
 <body>
@@ -32,5 +33,23 @@
                 alert("se hizo un gasto de " + e.expense.amount);
             });
         });
+
+        function expenseSearchFun() {
+        input = document.getElementById("expenseSearch");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("expenseTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                inputVal = td.textContent || td.innerText;
+            if (inputVal.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+                }
+            }
+            }
+        }
     </script>
 </body>

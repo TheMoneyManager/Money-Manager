@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\Currency;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,9 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('account.create');
+        $currencies = Currency::all();
+
+        return view('account.create', ['currencies' => $currencies]);
     }
 
     /**
@@ -43,9 +46,11 @@ class AccountController extends Controller
         $arr = $request->input();
         $account = new Account();
         $account->user_id = Auth::user()->id;
-        $account->name = $arr["name"];
-        $account->description = $arr["description"];
-        $account->balance = $arr["balance"];
+        $account->name = $arr['name'];
+        $account->description = $arr['description'];
+        $account->balance = $arr['balance'];
+        $account->card_termination = $arr['card_termination'];
+        $account->currency_id = $arr['currency_id'];
         $account->save();
 
         return redirect()->route('account.index');
@@ -70,7 +75,12 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        return view('account.edit', ['account' => $account]);
+        $currencies = Currency::all();
+
+        return view('account.edit', [
+            'account' => $account,
+            'currencies' => $currencies
+        ]);
     }
 
     /**
@@ -86,6 +96,8 @@ class AccountController extends Controller
         $account->name = $arr['name'];
         $account->description = $arr['description'];
         $account->balance = $arr['balance'];
+        $account->card_termination = $arr['card_termination'];
+        $account->currency_id = $arr['currency_id'];
         $account->save();
 
         return redirect()->route('account.index');

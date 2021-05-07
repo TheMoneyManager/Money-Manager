@@ -23,8 +23,8 @@
                     @foreach ($accounts as $account)
                         <tr class="border border-gray-300">
                             <th class="font-normal pt-4 pb-4 w-2/12 border-gray-700 border-2">{{ $account->name}}</th>
-                            <th class="font-normal pt-4 pb-4 w-6/12 border-gray-700 border-2">**** **** **** {{substr($account->description, -4)}}</th>
-                            <th class="text-green-700 font-medium pt-4 pb-4 w-2/12 border-gray-700 border-2">{{$account->balance}}</th>
+                            <th class="font-normal pt-4 pb-4 w-6/12 border-gray-700 border-2">**** **** **** {{ $account->card_termination }}</th>
+                            <th class="text-green-700 font-medium pt-4 pb-4 w-2/12 border-gray-700 border-2">${{$account->balance}} {{ $account->currency->currency }}</th>
                             <th class="w-2/12 border-gray-700 border-2">
                                 <a href="{{ route('account.edit', ['account' => $account])}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil mx-auto text-gray-500" viewBox="0 0 16 16">

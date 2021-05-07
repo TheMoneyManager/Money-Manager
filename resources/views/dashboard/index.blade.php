@@ -50,7 +50,7 @@
                             </tbody>
                         </table>
                         <div class="text-center py-2">
-                            <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none">
+                            <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none hover:bg-green-700 cursor-pointer">
                                 <a href="{{ route('expenses.create')}}" class="text-sm">
                                     Registar gasto
                                 </a>
@@ -76,7 +76,7 @@
                                     <td>
                                         <p class="mr-14">
                                             {{ $account->name }} <br>
-                                            **** **** **** {{substr($account->description, -4)}}
+                                            **** **** **** {{$account->card_termination}}
                                         </p>
                                     </td>
                                     <td>
@@ -89,7 +89,7 @@
                         </table>
                     </div>
                     <div class="text-center py-4">
-                        <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none">
+                        <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none hover:bg-green-700 cursor-pointer">
                             <a href="{{ route('account.index')}}" class="text-sm">
                                 Ver más detalle
                             </a>

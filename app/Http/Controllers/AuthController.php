@@ -36,6 +36,8 @@ class AuthController extends Controller
         $credentials = $req->only('email', 'password');
         if(Auth::attempt($credentials)){
             return redirect()->route('dashboard.index');
+            //TODO: Ruta dashboard_sp si tiene cuenta de super admin
+            // return redirect()->route('dashboard_sa.index');
         }
         return redirect()->back();
     }

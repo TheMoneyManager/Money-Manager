@@ -45,7 +45,7 @@
                     @endforeach
                 </div>
                 <div class="text-center py-5">
-                    <input type="submit" value="Registrar Gasto" class="uppercase px-3 py-3 bg-green-600 text-white text-sm focus:bg-green-500 focus:outline-none font-medium">
+                    <input type="submit" value="Registrar Gasto" class="uppercase px-3 py-3 bg-green-600 text-white text-sm focus:bg-green-500 focus:outline-none hover:bg-green-600 font-medium">
                 </div>
             </div>
             </form>

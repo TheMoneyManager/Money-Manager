@@ -10,17 +10,17 @@
             <table class="w-full">
                 <thead class="bg-gray-200">
                     <tr>
-                        <th class="pt-2 pb-2 font-medium text-gray-500">NOMBRE</th>
-                        <th class="pt-2 pb-2 font-medium text-gray-500">DESCRIPCIÓN</th>
-                        <th class="pt-2 pb-2 font-medium text-gray-500">SALDO</th>
+                        <th class="pt-2 pb-2 font-medium text-gray-500 border-gray-700 border-2">NOMBRE</th>
+                        <th class="pt-2 pb-2 font-medium text-gray-500 border-gray-700 border-2">DESCRIPCIÓN</th>
+                        <th class="pt-2 pb-2 font-medium text-gray-500 border-gray-700 border-2">SALDO</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($accounts as $account)
                         <tr class="border border-gray-300">
-                            <th class="text-gray-400 font-normal pt-4 pb-4 w-2/12">{{ $account->name}}</th>
-                            <th class="text-left text-gray-400 font-normal pt-4 pb-4 w-6/12">{{$account->description}}</th>
-                            <th class="text-green-700 font-medium pt-4 pb-4 w-4/12">{{$account->balance}}</th>
+                            <th class="text-gray-400 font-normal pt-4 pb-4 w-2/12 border-gray-700 border-2">{{ $account->name}}</th>
+                            <th class="text-left text-gray-400 font-normal pt-4 pb-4 w-6/12 border-gray-700 border-2">{{$account->description}}</th>
+                            <th class="text-green-700 font-medium pt-4 pb-4 w-4/12 border-gray-700 border-2">{{$account->balance}}</th>
                         </tr>
                     @endforeach
                 </tbody>

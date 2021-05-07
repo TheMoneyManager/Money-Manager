@@ -28,7 +28,7 @@
 
     <script>
         $(document).ready(function() {
-            console.log("ando ready");
+            //console.log("ando ready");
             window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
                 alert("se hizo un gasto de " + e.expense.amount);
             });

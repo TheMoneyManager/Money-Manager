@@ -19,15 +19,15 @@
                 <table class="w-full mt-4">
                     <thead class="bg-gray-200">
                         <tr>
-                            <th class="pt-2 pb-2 font-medium text-gray-500 w-8/12">NOMBRE</th>
-                            <th class="pt-2 pb-2 font-medium text-gray-500 w-4/12">Eliminar</th>
+                            <th class="pt-2 pb-2 font-medium text-gray-500 w-8/12 border-gray-700 border-2">NOMBRE</th>
+                            <th class="pt-2 pb-2 font-medium text-gray-500 w-4/12 border-gray-700 border-2">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                        <tr id="row_{{$user->id}}" class="border border-gray-300">
-                            <th class="text-gray-400 font-normal pt-4 pb-4 w-8/12">{{ $user->email}}</th>
-                            <th class="text-gray-400 font-normal pt-4 pb-4 w-4/12">
+                        <tr id="row_{{$user->id}}" class="border-gray-700 border-2">
+                            <th class="text-gray-400 font-normal pt-4 pb-4 w-8/12 border-gray-700 border-2">{{ $user->email}}</th>
+                            <th class="text-gray-400 font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2">
                                 <button id="{{$user->id}}" onclick="eliminarUsuario({{$user->id}})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash text-red-700 mx-auto" viewBox="0 0 16 16">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -66,9 +66,9 @@
                 let email = response.email
                 //console.log(id_res + " " + email);
                 $('table tbody').append(`
-                        <tr class="border border-gray-300">
-                            <th class="text-gray-400 font-normal pt-4 pb-4 w-8/12">`+  email +`</th>
-                            <th class="text-gray-400 font-normal pt-4 pb-4 w-4/12">
+                        <tr id="row_`+id_res+`" class="border-gray-700 border-2">
+                            <th class="text-gray-400 font-normal pt-4 pb-4 w-8/12 border-gray-700 border-2">`+  email +`</th>
+                            <th class="text-gray-400 font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2">
                                 <button id="`+ id_res +`" onclick="terminarTarea()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash text-red-700 mx-auto" viewBox="0 0 16 16">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

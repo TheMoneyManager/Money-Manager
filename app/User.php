@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(Category::class);
     }
 
-    public function sharedAccount(){
-        return $this->belongsToMany(Account::class, 'account_user');
+    public function sharedAccounts(){
+        return $this->belongsToMany(Account::class, 'account_user')->withPivot('role');
     }
 }

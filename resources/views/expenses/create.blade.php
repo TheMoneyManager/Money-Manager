@@ -52,4 +52,29 @@
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+                //console.log("ando ready");
+                window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
+                    if(e.account.user_id == {{auth()->user()->id}}){
+                        $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta " + e.account.name);
+                        document.getElementById('notification').style.visibility="visible";
+                        setTimeout(function() {
+                            document.getElementById('notification').style.visibility="hidden";
+                        }, 5000);
+                    }else{
+                        e.users.forEach(user => {
+                            if(user.id == {{auth()->user()->id}}){
+                                $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta COMPARTIDA " + e.account.name);
+                                document.getElementById('notification').style.visibility="visible";
+                                setTimeout(function() {
+                                    document.getElementById('notification').style.visibility="hidden";
+                                }, 5000);
+                            }
+                        });
+                    }
+                });
+            });
+    </script>
 @endsection

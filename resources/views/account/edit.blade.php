@@ -32,7 +32,7 @@
                             <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Tipo de Moneda</h3>
                             <select name="currency_id" id="currency_id" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                                 @foreach ($currencies as $currency)
-                                        <option value="{{$currency->id}}" @if ($account->currency_id == $currency->id) selected="selected" @endif>
+                                        <option value="{{$currency->currency}}" @if ($account->currency_id == $currency->id) selected="selected" @endif>
                                             {{ $currency->currency }}
                                         </option>
                                 @endforeach
@@ -53,4 +53,62 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const selectElement = document.querySelector('#currency_id');
+        let source = selectElement.value;
+        console.log(source);
+
+        selectElement.addEventListener('change', (event) => {
+            let destination = event.target.value;
+            let amount = $('#balance').val();
+
+            $.ajax({
+                url: '{{ route('account.conversion') }}',
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    source_currency: source,
+                    destination_currency: destination,
+                    amount: amount
+                }
+            })
+            .done(function(response) {
+                console.log(response['rates'][destination]['rate_for_amount']);
+                $('#balance').val(response['rates'][destination]['rate_for_amount']);
+            })
+            .fail(function(jqXHR, response) {
+                console.log('Fallido', response);
+            });
+
+
+        });
+
+
+        $(document).ready(function() {
+                //console.log("ando ready");
+                window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
+                    if(e.account.user_id == {{auth()->user()->id}}){
+                        $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta " + e.account.name);
+                        document.getElementById('notification').style.visibility="visible";
+                        setTimeout(function() {
+                            document.getElementById('notification').style.visibility="hidden";
+                        }, 5000);
+                    }else{
+                        e.users.forEach(user => {
+                            if(user.id == {{auth()->user()->id}}){
+                                $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta COMPARTIDA " + e.account.name);
+                                document.getElementById('notification').style.visibility="visible";
+                                setTimeout(function() {
+                                    document.getElementById('notification').style.visibility="hidden";
+                                }, 5000);
+                            }
+                        });
+                    }
+                });
+            });
+    </script>
 @endsection

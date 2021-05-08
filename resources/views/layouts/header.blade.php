@@ -32,17 +32,6 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            //console.log("ando ready");
-            window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
-                $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + " en tu cuenta");
-                document.getElementById('notification').style.visibility="visible";
-                setTimeout(function() {
-                    document.getElementById('notification').style.visibility="hidden";
-                }, 2500);
-            });
-        });
-
         function expenseSearchFun() {
         input = document.getElementById("expenseSearch");
         filter = input.value.toUpperCase();

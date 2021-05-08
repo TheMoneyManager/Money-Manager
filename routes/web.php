@@ -56,8 +56,8 @@ Route::resource('user-account', 'RelAccountUserController');
 Route::get('/conversion', [AccountController::class, 'conversion'])
     ->name('account.conversion');
 
-Route::get('/send/{expense}', function($expense){
-    event(new NewExpenseNotification($expense));
+Route::get('/send/{expense}/{account}/{users}', function($expense, $account, $users){
+        event(new NewExpenseNotification($expense, $account, $users));
 });
 
 Route::get('user-account/{account}/edit', 'RelAccountUserController@edit')->name('user-account.edit');

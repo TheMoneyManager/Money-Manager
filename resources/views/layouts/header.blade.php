@@ -12,6 +12,11 @@
     <title>MoneyManager</title>
 </head>
 <body>
+    <div id="notification" class="absolute bg-green-100 right-10 top-2 border border-green-400 text-green-700 px-4 py-3 rounded" style="visibility: hidden">
+        <strong class="font-bold text-lg">Actualización.</strong>
+        <p id="mensajeNoti" class="block text-base"></p>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -30,7 +35,11 @@
         $(document).ready(function() {
             //console.log("ando ready");
             window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
-                alert("se hizo un gasto de " + e.expense.amount);
+                $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + " en tu cuenta");
+                document.getElementById('notification').style.visibility="visible";
+                setTimeout(function() {
+                    document.getElementById('notification').style.visibility="hidden";
+                }, 2500);
             });
         });
 

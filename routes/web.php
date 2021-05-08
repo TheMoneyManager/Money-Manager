@@ -53,6 +53,9 @@ Route::resource('user', 'UsersController');
 Route::resource('account', 'AccountController');
 Route::resource('user-account', 'RelAccountUserController');
 
+Route::get('/conversion', [AccountController::class, 'conversion'])
+    ->name('account.conversion');
+
 Route::get('/send/{expense}', function($expense){
     event(new NewExpenseNotification($expense));
 });

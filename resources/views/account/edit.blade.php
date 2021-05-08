@@ -18,25 +18,25 @@
 
                     <div class="grid grid-cols-2 gap-12">
                         <div class="w-full">
+                            <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Saldo</h3>
+                            <input type="text" placeholder="$300" value="{{ $account->balance }}" name="balance" id="balance" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400">
+                        </div>
+                        <div class="w-full">
+                            <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Terminación de Tarjeta</h3>
+                            <input type="text" placeholder="9998" value="{{ $account->card_termination }}" name="card_termination" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-12">
+                        <div class="w-full">
                             <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Tipo de Moneda</h3>
-                            <select name="currency_id" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                            <select name="currency_id" id="currency_id" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                                 @foreach ($currencies as $currency)
                                         <option value="{{$currency->id}}" @if ($account->currency_id == $currency->id) selected="selected" @endif>
                                             {{ $currency->currency }}
                                         </option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div class="w-full">
-                            <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Saldo</h3>
-                            <input type="text" placeholder="$300" value="{{ $account->balance }}" name="balance" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-12">
-                        <div class="w-full">
-                            <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Terminación de Tarjeta</h3>
-                            <input type="text" placeholder="9998" value="{{ $account->card_termination }}" name="card_termination" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400">
                         </div>
                     </div>
 

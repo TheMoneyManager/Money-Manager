@@ -24,7 +24,7 @@
     <script type="module" src="{{ asset('js/echo.js')}}"></script>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 
-    <div class="flex h-screen">
+    <div class="flex h-full">
         @yield('sidebar')
         <div class="p-6 w-full">
             @yield('content')

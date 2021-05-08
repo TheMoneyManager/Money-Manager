@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\User;
 use App\Account;
 use App\Currency;
-use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class AccountController extends Controller
 {
@@ -115,5 +116,28 @@ class AccountController extends Controller
     {
         $account->delete();
         return redirect()->route('account.index');
+    }
+
+    public function conversion(Request $request)
+    {
+        $arr = $request->input();
+        $source_currency = $arr['source_currency'];
+        $destination_currency = $arr['destination_currency'];
+        $amount = $arr['amount'];
+
+        $url = 'https://currency-converter5.p.rapidapi.com/currency/convert';
+
+        $response = Http::withHeaders([
+            'x-rapidapi-key' => env('CURRENCY_API_KEY'),
+            'x-rapidapi-host' => 'currency-converter5.p.rapidapi.com'
+        ])->get($url, [
+            'format' => 'json',
+            'from' => $source_currency,
+            'to' => $destination_currency,
+            'amount' => $amount
+        ])->json();
+
+        return $response;
+
     }
 }

@@ -20,7 +20,7 @@
                 <a href="{{ route('account.index') }}" class="self-center text-white hover:text-green-700">Cuentas</a>
             </li>
             <li class="flex mb-8">
-                <a href="{{ route('user-account.show', ['id' => auth()->user()->id]) }}" class="self-center text-white hover:text-green-700">Cuentas compartidas</a>
+                <a href="{{ route('user-account.index') }}" class="self-center text-white hover:text-green-700">Cuentas compartidas</a>
             </li>
             <li class="flex mb-8">
                 <a href="{{ route('expenses.index') }}" class="self-center text-white hover:text-green-700">Gastos</a>

@@ -37,8 +37,6 @@
             </table>
         </div>
     </div>
-<<<<<<< HEAD
-=======
 
     <script>
         function addUser(){
@@ -135,5 +133,4 @@
                 });
             });
     </script>
->>>>>>> main
 @endsection

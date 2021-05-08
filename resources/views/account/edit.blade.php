@@ -43,7 +43,7 @@
                     <h3 class="text-gray-600 block w-2/12 mt-10 font-medium">Descripción</h3>
                     <input name="description" placeholder="Dinero en la cartera" value="{{$account->description}}" class="w-full rounded-lg bg-gray-100 border-0 inline-block h-52">
 
-                    <input type="submit" value="GUARDAR CAMBIOS" class="inline-block w-3/12 h-10 bg-green-600 text-white text-sm mt-10 ml-10">
+                    <button type="submit" class="w-full px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Guardar cambios</button>
                 </form>
                 <form action="{{ route('account.destroy', ['account' => $account])}}" method="post">
                     @csrf

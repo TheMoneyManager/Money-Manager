@@ -1,7 +1,7 @@
 @extends('layouts.header')
 
 @section("sidebar")
-    <div class="p-6 border-r w-64 border-gray-200 bg-gray-700">
+    <div class="p-6 border-r w-64 border-gray-200 bg-gray-700 h-full md:h-full">
         <div class="text-center flex mb-8">
             <img src="/img/Logo@2x.png" class="h-28 mx-auto">
         </div>

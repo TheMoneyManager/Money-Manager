@@ -101,6 +101,9 @@
         <div class="lg:col-span-1 sm:col-span-3">
             @include('dashboard.components.expenses', ['expenses_count' => $expenses_count])
         </div>
+        <div class="lg:col-span-1 sm:col-span-3">
+            @include('dashboard.components.expensesChart', ['expenses' => $expenses])
+        </div>
     </div>
 
 </div>

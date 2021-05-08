@@ -21,7 +21,7 @@
             </div>
             <div class="grid grid-cols-3">
                 <div class="flex justify-center">
-                    <input type="submit" value="Guardar cambios" class="w-auto inline-block px-3 py-4 mt-20 text-white bg-green-600 focus:bg-green-500 focus:outline-none text-sm font-bold uppercase" >
+                    <button type="submit" class="w-full px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Guardar cambios</button>
                 </div>
         </form>
                 <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="col-start-3 flex flex-col-reverse flex-row-reverse">

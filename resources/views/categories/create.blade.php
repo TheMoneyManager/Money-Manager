@@ -14,12 +14,12 @@
         <form action="{{ route('categories.store') }}" method="POST">
             @CSRF
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-            <div class="grid grid-cols-3 flex items-center">
+            <div class="grid grid-cols-3 flex items-center ">
                 <label for="name">Nombre</label>
                 <input type="text" name="name" class="col-span-2 bg-gray-100  placeholder-gray-400 border-0" placeholder="Nombre de la categoría">
             </div>
-            <div class="flex justify-center">
-                <input type="submit" value="Crear categoría" class="w-auto inline-block px-3 py-4 mt-20 text-white bg-green-600 focus:bg-green-500 focus:outline-none text-sm font-bold uppercase" >
+            <div class="flex justify-center py-6">
+                <button type="submit" class="w-full px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Crear categoría</button>
             </div>
         </form>
     </div>

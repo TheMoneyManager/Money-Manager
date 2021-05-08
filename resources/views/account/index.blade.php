@@ -49,8 +49,8 @@
 
     <script>
         $(document).ready(function() {
-                //console.log("ando ready");
                 window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
+                    console.log(e);
                     if(e.account.user_id == {{auth()->user()->id}}){
                         $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta " + e.account.name);
                         document.getElementById('notification').style.visibility="visible";

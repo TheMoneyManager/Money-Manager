@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
-use App\Category;
+use App\AccountUser;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,11 @@ class RelAccountUserController extends Controller
      */
     public function index()
     {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $accounts = $user->sharedAccounts()->orderBy('account_id')->get();
 
+        return view('account-share.index', ['accounts' => $accounts]);
     }
 
     /**
@@ -41,14 +45,20 @@ class RelAccountUserController extends Controller
         $all = $request->all();
         $requestEmail = $all['email'];
         $account_id = $all['id_account'];
+        $role = $all['role'];
         $user = User::where('email', $requestEmail)->first();
 
         if($user != null){
             $account = Account::find($account_id);
-            $account->users()->attach($user);
+            $account->users()->attach($user, ['role' => $role]);
         }
 
-        return response()->json($user);
+        $response = [];
+        $response['id'] = $user->id;
+        $response['email'] = $requestEmail;
+        $response['role'] = $role;
+
+        return response()->json($response);
     }
 
     /**
@@ -59,10 +69,7 @@ class RelAccountUserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        $accounts = $user->sharedAccount()->orderBy('account_id')->get();
 
-        return view('account-share.show', ['accounts' => $accounts]);
     }
 
     /**
@@ -76,7 +83,7 @@ class RelAccountUserController extends Controller
         $account = Account::find($id);
         $users = $account->users()->orderBy('user_id')->get();
 
-        return view('account-share.index', ['account' => $account, 'users' => $users]);
+        return view('account-share.edit', ['account' => $account, 'users' => $users]);
     }
 
     /**

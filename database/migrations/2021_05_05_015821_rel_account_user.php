@@ -1,4 +1,4 @@
-<?php
+\<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,6 +17,8 @@ class RelAccountUser extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('account_id');
+            $table->enum('role', ['user', 'admin']);
+
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('account_id')->references('id')->on('accounts');
             $table->timestamps();
@@ -30,6 +32,6 @@ class RelAccountUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories_expenses');
+        Schema::dropIfExists('account_user');
     }
 }

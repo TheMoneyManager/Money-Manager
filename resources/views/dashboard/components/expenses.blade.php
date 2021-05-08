@@ -1,4 +1,4 @@
-<div class="shadow-md">
+<div class="shadow-md  h-30">
     <div>
         <p class="text-2xl text-gray-800 ml-10">Gastos registrados</p>
         <p class="text-base text-gray-600 ml-10">Últimos 30 días</p>

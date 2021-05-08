@@ -1,5 +1,5 @@
 <div class="shadow-md">
-    <div id="piechart" style="width: 800px; height: 400px;"></div>
+    <div id="piechart" style="width: 600px; height: 300px;"></div>
 </div>  
 
 
@@ -52,7 +52,8 @@
           viewWindow: {
             max: [5, 5, 5]
           }
-        }
+        },
+        colors: ['#10b981']
       };
 
         var chart = new google.charts.Bar(document.getElementById('piechart'));

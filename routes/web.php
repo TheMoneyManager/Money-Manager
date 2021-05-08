@@ -53,8 +53,8 @@ Route::resource('user', 'UsersController');
 Route::resource('account', 'AccountController');
 Route::resource('user-account', 'RelAccountUserController');
 
-Route::get('/send/{expense}', function($expense){
-    event(new NewExpenseNotification($expense));
+Route::get('/send/{expense}/{account}/{users}', function($expense, $account, $users){
+    event(new NewExpenseNotification($expense, $account, $users));
 });
 
 Route::get('user-account/{account}/edit', 'RelAccountUserController@edit')->name('user-account.edit');

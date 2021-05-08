@@ -100,7 +100,8 @@ class AccountController extends Controller
         $account->description = $arr['description'];
         $account->balance = $arr['balance'];
         $account->card_termination = $arr['card_termination'];
-        $account->currency_id = $arr['currency_id'];
+        $currency = Currency::where('currency', $arr['currency_id'])->first();
+        $account->currency_id = $currency->id;
         $account->save();
 
         return redirect()->route('account.index');

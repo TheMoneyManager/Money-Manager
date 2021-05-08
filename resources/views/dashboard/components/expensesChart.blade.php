@@ -1,5 +1,5 @@
-<div class="shadow-md">
-    <div id="piechart" style="width: 600px; height: 300px;"></div>
+<div class="shadow-md h-30">
+    <div id="piechart"></div>
 </div>  
 
 

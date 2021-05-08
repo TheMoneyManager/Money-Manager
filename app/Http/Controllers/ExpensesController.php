@@ -55,8 +55,11 @@ class ExpensesController extends Controller
             $category = Category::find($category_id);
             $expense->categories()->attach($category);
         }
+        $account_id = $all['account_id'];
+        $account = Account::find($account_id);
+        $users = $account->users()->orderBy('user_id')->get();
 
-        event(new NewExpenseNotification($expense));
+        event(new NewExpenseNotification($expense, $account, $users));
 
         return redirect()->route('expenses.index');
     }

@@ -45,10 +45,36 @@
                     @endforeach
                 </div>
                 <div class="text-center py-5">
-                    <input type="submit" value="Registrar Gasto" class="uppercase px-3 py-3 bg-green-600 text-white text-sm focus:bg-green-500 focus:outline-none hover:bg-green-600 font-medium">
+                <button type="submit" class="w-full px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Registrar gasto</button>
+
                 </div>
             </div>
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+                //console.log("ando ready");
+                window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
+                    if(e.account.user_id == {{auth()->user()->id}}){
+                        $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta " + e.account.name);
+                        document.getElementById('notification').style.visibility="visible";
+                        setTimeout(function() {
+                            document.getElementById('notification').style.visibility="hidden";
+                        }, 5000);
+                    }else{
+                        e.users.forEach(user => {
+                            if(user.id == {{auth()->user()->id}}){
+                                $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta COMPARTIDA " + e.account.name);
+                                document.getElementById('notification').style.visibility="visible";
+                                setTimeout(function() {
+                                    document.getElementById('notification').style.visibility="hidden";
+                                }, 5000);
+                            }
+                        });
+                    }
+                });
+            });
+    </script>
 @endsection

@@ -27,8 +27,33 @@
                 <h3 class="text-gray-600 inline-block ml-36 w-2/12 mt-10">Confirmar Contraseña</h3>
                 <input type="password" placeholder="●●●●●●●" name="confirmacionContrasenia" class="rounded-lg bg-gray-100 border-0 inline-block w-3/12 mt-10">
 
-                <input type="submit" value="GUARDAR CAMBIOS" class="block w-2/12 h-10 bg-green-700 text-white mt-24 mx-auto text-sm">
+                <button type="submit" class="px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Guardar cambios</button>
             </form>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+                //console.log("ando ready");
+                window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
+                    if(e.account.user_id == {{auth()->user()->id}}){
+                        $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta " + e.account.name);
+                        document.getElementById('notification').style.visibility="visible";
+                        setTimeout(function() {
+                            document.getElementById('notification').style.visibility="hidden";
+                        }, 5000);
+                    }else{
+                        e.users.forEach(user => {
+                            if(user.id == {{auth()->user()->id}}){
+                                $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta COMPARTIDA " + e.account.name);
+                                document.getElementById('notification').style.visibility="visible";
+                                setTimeout(function() {
+                                    document.getElementById('notification').style.visibility="hidden";
+                                }, 5000);
+                            }
+                        });
+                    }
+                });
+            });
+    </script>
 @endsection

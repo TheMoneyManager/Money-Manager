@@ -12,6 +12,11 @@
     <title>MoneyManager</title>
 </head>
 <body>
+    <div id="notification" class="absolute bg-green-100 right-10 top-2 border border-green-400 text-green-700 px-4 py-3 rounded" style="visibility: hidden">
+        <strong class="font-bold text-lg">Actualización.</strong>
+        <p id="mensajeNoti" class="block text-base"></p>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -19,7 +24,7 @@
     <script type="module" src="{{ asset('js/echo.js')}}"></script>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
 
-    <div class="flex h-screen">
+    <div class="flex h-full">
         @yield('sidebar')
         <div class="p-6 w-full">
             @yield('content')
@@ -27,13 +32,6 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            //console.log("ando ready");
-            window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
-                alert("se hizo un gasto de " + e.expense.amount);
-            });
-        });
-
         function expenseSearchFun() {
         input = document.getElementById("expenseSearch");
         filter = input.value.toUpperCase();

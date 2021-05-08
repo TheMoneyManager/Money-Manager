@@ -37,4 +37,103 @@
             </table>
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <script>
+        function addUser(){
+            let userName = $('#emailUser').val();
+            let account_id = $('#idAccount').text();
+            $.ajax({
+                url: '{{ route('user-account.store') }}',
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    email: userName,
+                    id_account: account_id
+                }
+            })
+            .done(function(response) {
+                //console.log(response);
+                $('#emailUser').val('');
+                let id_res = response.id;
+                let email = response.email
+                //console.log(id_res + " " + email);
+                $('table tbody').append(`
+                        <tr id="row_`+id_res+`" class="border-gray-700 border-2">
+                            <th class="text-gray-400 font-normal pt-4 pb-4 w-8/12 border-gray-700 border-2">`+  email +`</th>
+                            <th class="text-gray-400 font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2">
+                                <button id="`+ id_res +`" onclick="terminarTarea()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash text-red-700 mx-auto" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                                </button>
+                            </th>
+                        </tr>
+                `)
+
+            })
+            .fail(function(jqXHR, response) {
+                console.log('Fallido', response);
+            });
+        }
+
+        function eliminarUsuario(idUser){
+            let user_url = '{{ route('user-account.destroy', 0) }}';
+            user_url = user_url.replace('0', idUser);
+            let row = '#row_' + idUser;
+            let account_id = $('#idAccount').text();
+            $.ajax({
+                url: user_url,
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    id: idUser,
+                    account: account_id
+                }
+            })
+            .done(function(response) {
+                //console.log(response["message"] != 'borrado fallido');
+                if(response["message"] != 'borrado fallido'){
+                    $(row).remove();
+                }
+            })
+            .fail(function(jqXHR, response) {
+                console.log('Fallido', response);
+            });
+        }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+                //console.log("ando ready");
+                window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
+                    if(e.account.user_id == {{auth()->user()->id}}){
+                        $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta " + e.account.name);
+                        document.getElementById('notification').style.visibility="visible";
+                        setTimeout(function() {
+                            document.getElementById('notification').style.visibility="hidden";
+                        }, 5000);
+                    }else{
+                        e.users.forEach(user => {
+                            if(user.id == {{auth()->user()->id}}){
+                                $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta COMPARTIDA " + e.account.name);
+                                document.getElementById('notification').style.visibility="visible";
+                                setTimeout(function() {
+                                    document.getElementById('notification').style.visibility="hidden";
+                                }, 5000);
+                            }
+                        });
+                    }
+                });
+            });
+    </script>
+>>>>>>> main
 @endsection

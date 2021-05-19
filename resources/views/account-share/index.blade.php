@@ -23,7 +23,7 @@
                             <th class="text-gray-400 font-normal pt-4 pb-4 w-2/12 border-gray-700 border-2">{{ $account->name}}</th>
                             <th class="text-left text-gray-400 font-normal pt-4 pb-4 w-6/12 border-gray-700 border-2">{{$account->description}}</th>
                             <th class="text-gray-400 font-normal pt-4 pb-4 w-1/12 border-gray-700 border-2">{{ $account->pivot->role}}</th>
-                            <th class="text-green-700 font-medium pt-4 pb-4 w-2/12 border-gray-700 border-2">${{$account->balance}} {{ $account->currency->currency }}</th>
+                            <th class="text-green-700 font-medium pt-4 pb-4 w-2/12 border-gray-700 border-2">${{number_format($account->balance, 2)}} {{ $account->currency->currency }}</th>
                             <th class="w-1/12 border-gray-700 border-2">
                                 @if ($account->pivot->role == 'admin')
                                     <a href="{{ route('account.edit', ['account' => $account])}}">

@@ -27,7 +27,7 @@
                                 {{ $category->name }}
                                 @endforeach
                             </td>
-                            <td class="text-green-700 font-medium border-gray-700 border-2">{{ $expense->amount }}</td>
+                            <td class="text-green-700 font-medium border-gray-700 border-2 text-center">${{ number_format($expense->amount, 2) }}</td>
                             <td class="border-gray-700 border-2">{{ $expense->description }}</td>
                         </tr>
                     @endforeach

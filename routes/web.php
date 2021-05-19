@@ -2,6 +2,7 @@
 
 use App\Events\NewExpenseNotification;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TransactionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,7 @@ Route::any('logout', 'AuthController@logout')
 Route::resource('user', 'UsersController');
 Route::resource('account', 'AccountController');
 Route::resource('user-account', 'RelAccountUserController');
+Route::resource('transaction', 'TransactionsController');
 
 Route::get('/conversion', [AccountController::class, 'conversion'])
     ->name('account.conversion');
@@ -62,3 +64,6 @@ Route::get('/send/{expense}/{account}/{users}', function($expense, $account, $us
 
 Route::get('user-account/{account}/edit', 'RelAccountUserController@edit')->name('user-account.edit');
 Route::get('user-account/{id}/show', 'RelAccountUserController@show')->name('user-account.show');
+Route::get('transaction/{id}/show', 'TransactionsController@show')->name('transaction.show');
+Route::get('/destination', [TransactionsController::class, 'destination'])->name('transaction.destination');
+

@@ -18,7 +18,7 @@
                         </td>
                         <td>
                             <p class="ml-10 text-green-700">
-                                ${{ $account->balance }}
+                                ${{ number_format($account->balance, 2)}}
                             </p>
                         </td>
                     </tr>

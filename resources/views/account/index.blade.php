@@ -18,14 +18,15 @@
                         <th class="pt-2 pb-2 font-medium border-gray-700 border-2">SALDO</th>
                         <th class="pt-2 pb-2 font-medium border-gray-700 border-2">EDITAR</th>
                         <th class="pt-2 pb-2 font-medium border-gray-700 border-2">COMPARTIR</th>
+                        <th class="pt-2 pb-2 font-medium border-gray-700 border-2">TRANSFERIR</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
                     @foreach ($accounts as $account)
                         <tr class="border border-gray-300">
                             <th class="font-normal pt-4 pb-4 w-2/12 border-gray-700 border-2">{{ $account->name}}</th>
-                            <th class="font-normal pt-4 pb-4 w-6/12 border-gray-700 border-2">**** **** **** {{ $account->card_termination }}</th>
-                            <th class="text-green-700 font-medium pt-4 pb-4 w-2/12 border-gray-700 border-2">${{$account->balance}} {{ $account->currency->currency }}</th>
+                            <th class="font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2">**** **** **** {{ $account->card_termination }}</th>
+                            <th class="text-green-700 font-medium pt-4 pb-4 w-2/12 border-gray-700 border-2 text-center">${{number_format($account->balance, 2)}} {{ $account->currency->currency }}</th>
                             <th class="w-2/12 border-gray-700 border-2">
                                 <a href="{{ route('account.edit', ['account' => $account])}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil mx-auto text-gray-500" viewBox="0 0 16 16">
@@ -37,6 +38,13 @@
                                 <a href="{{ route('user-account.edit', ['account' => $account])}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share mx-auto text-gray-500" viewBox="0 0 16 16">
                                         <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                                    </svg>
+                                </a>
+                            </th>
+                            <th class="w-2/12 border-gray-700 border-2">
+                                <a href="{{ route('transaction.show', ['id' => $account->id])}}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share mx-auto text-gray-500" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
                                     </svg>
                                 </a>
                             </th>

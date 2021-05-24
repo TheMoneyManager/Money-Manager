@@ -17,15 +17,26 @@ class DashboardController extends Controller
         //$expenses = Expense::orderBy('updated_at', 'desc')->paginate(2);
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
-        $expenses = $user->expenses()->orderBy('created_at', 'desc')->limit(5)->get();
+        $expenses = $user->expenses()->orderBy('created_at', 'desc')->limit(7)->get();
         $accounts = $user->accounts()->orderBy('name')->get();
-        // $expenses_count =  $user->expenses()->orderBy('created_at', 'desc')->get();
-        // dd($expenses[0]);
+        //$expenses_count =  $user->expenses()->orderBy('created_at', 'desc')->get();
+
+        $expenses_aux = $user->expenses()->get();
+        $expenses_amount = array();
+        foreach($expenses_aux as $expense) {
+            $created = $expense->created_at->format('d-m-Y');
+
+            if(!array_key_exists($created, $expenses_amount)) {
+                $expenses_amount[$created] = 0;
+            }
+            $expenses_amount[$created] += $expense['amount'];
+        }
+
 
         $expenses_count = $user->expenses()
                    ->select('id')
                    ->whereDate('created_at', '>', Carbon::now()->subDays(30))->get();
 
-        return view('dashboard.index', ['expenses' => $expenses, 'accounts' => $accounts, 'expenses_count' => count($expenses_count)]);
+        return view('dashboard.index', ['expenses_amount' => $expenses_amount, 'expenses' => $expenses, 'accounts' => $accounts, 'expenses_count' => count($expenses_count)]);
     }
 }

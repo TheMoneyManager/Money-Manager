@@ -12,7 +12,7 @@
 
     <div class="grid grid-cols-3 gap-6">
         <div class="lg:col-span-2 sm:col-span-3">
-            @include('dashboard.components.expensesChart', ['expenses' => $expenses])
+            @include('dashboard.components.expensesChart', ['expenses_amount' => $expenses_amount])
         </div>
         <div class="lg:col-span-1 sm:col-span-3">
             @include('dashboard.components.expenses', ['expenses_count' => $expenses_count])

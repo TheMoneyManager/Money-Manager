@@ -22,12 +22,12 @@
         //         }
         //     ?>
         // ]);
-
         var data = google.visualization.arrayToDataTable([
             ['Fecha', 'Monto'],
             <?php 
-                foreach($expenses as $expense){
-                    echo "['".$expense->created_at."',".$expense->amount."],";
+                foreach($expenses_amount as $key => $value){
+                    echo "['".$key."',".$value."],";
+                    //echo "['".$expense->created_at->format('Y-m-d')."',".$expense->amount."],";
                 }
             ?>
         ]);

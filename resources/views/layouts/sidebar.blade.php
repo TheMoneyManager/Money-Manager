@@ -28,6 +28,9 @@
             <a href="{{ route('expenses.index') }}" class="self-center text-white hover:text-green-700">Gastos</a>
         </li>
         <li class="flex mb-8">
+            <a href="{{ route('incomes.index') }}" class="self-center text-white hover:text-green-700">Ingresos</a>
+        </li>
+        <li class="flex mb-8">
             <a href="{{ route('user.index') }}" class="self-center text-white hover:text-green-700">Configuración</a>
         </li>
         <div class="text-center flex mt-20">

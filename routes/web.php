@@ -34,7 +34,8 @@ Route::get('dashboard_sa', 'Dashboard_saController@index')
 
 Route::resource('categories', 'CategoryController');
 
-Route::resource('expenses', 'ExpensesController'); // No existe archivo
+Route::resource('expenses', 'ExpensesController');
+Route::resource('incomes', 'IncomesController');
 
 /* AuthController */
 Route::get('register', 'AuthController@register')

@@ -4,6 +4,7 @@ use App\Events\NewExpenseNotification;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TransactionsController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,11 @@ Route::get('/conversion', [AccountController::class, 'conversion'])
 Route::get('/send/{expense}/{account}/{users}', function($expense, $account, $users){
         event(new NewExpenseNotification($expense, $account, $users));
 });
+
+
+/* Oauth */
+Route::get('/sign-in/github', 'AuthController@github');
+Route::get('/sign-in/github/redirect', 'AuthController@githubRedirect');
 
 Route::get('user-account/{account}/edit', 'RelAccountUserController@edit')->name('user-account.edit');
 Route::get('user-account/{id}/show', 'RelAccountUserController@show')->name('user-account.show');

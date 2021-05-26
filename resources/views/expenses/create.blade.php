@@ -45,8 +45,7 @@
                     @endforeach
                 </div>
                 <div class="text-center py-5">
-                <button type="submit" class="w-full px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Registrar gasto</button>
-
+                    <button type="submit" class="w-full px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Registrar gasto</button>
                 </div>
             </div>
             </form>

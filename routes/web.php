@@ -2,6 +2,7 @@
 
 use App\Events\NewExpenseNotification;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TransactionsController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -27,6 +28,10 @@ Route::get('/', function () {
 Route::get('dashboard', 'DashboardController@index')
     -> name('dashboard.index');
 
+//SuperAdmin Dashboard
+Route::get('dashboard_sa', 'Dashboard_saController@index')
+-> name('dashboard_sa.index');
+
 Route::resource('categories', 'CategoryController');
 
 Route::resource('expenses', 'ExpensesController'); // No existe archivo
@@ -48,9 +53,14 @@ Route::any('logout', 'AuthController@logout')
 
 Route::resource('user', 'UsersController');
 Route::resource('account', 'AccountController');
+Route::resource('user-account', 'RelAccountUserController');
+Route::resource('transaction', 'TransactionsController');
 
-Route::get('/send/{expense}', function($expense){
-    event(new NewExpenseNotification($expense));
+Route::get('/conversion', [AccountController::class, 'conversion'])
+    ->name('account.conversion');
+
+Route::get('/send/{expense}/{account}/{users}', function($expense, $account, $users){
+        event(new NewExpenseNotification($expense, $account, $users));
 });
 
 
@@ -58,13 +68,8 @@ Route::get('/send/{expense}', function($expense){
 Route::get('/sign-in/github', 'AuthController@github');
 Route::get('/sign-in/github/redirect', 'AuthController@githubRedirect');
 
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('github')->user();
-    // All providers...
-    $user->getId();
-    $user->getNickname();
-    $user->getName();
-    $user->getEmail();
-    $user->getAvatar();
-    // $user->token
-});
+Route::get('user-account/{account}/edit', 'RelAccountUserController@edit')->name('user-account.edit');
+Route::get('user-account/{id}/show', 'RelAccountUserController@show')->name('user-account.show');
+Route::get('transaction/{id}/show', 'TransactionsController@show')->name('transaction.show');
+Route::get('/destination', [TransactionsController::class, 'destination'])->name('transaction.destination');
+

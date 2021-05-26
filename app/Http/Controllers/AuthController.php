@@ -28,7 +28,7 @@ class AuthController extends Controller
             'email' => 'required | email:rfc,dns',
             'password' => 'required |confirmed',
         ])->validate();
-        
+
         $data['password'] = Hash::make($data['password']);
 
         User::create($data);
@@ -39,6 +39,8 @@ class AuthController extends Controller
         $credentials = $req->only('email', 'password');
         if(Auth::attempt($credentials)){
             return redirect()->route('dashboard.index');
+            //TODO: Ruta dashboard_sp si tiene cuenta de super admin
+            // return redirect()->route('dashboard_sa.index');
         }
         return redirect()->back();
     }

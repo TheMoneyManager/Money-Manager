@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use Illuminate\Http\Request;
-use App\Expense;
-use App\User;
 use App\Account;
+use App\AccountUser;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-use App\Events\NewExpenseNotification;
 
-class ExpensesController extends Controller
+class RelAccountUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +17,11 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id;
+        $user_id = auth()->user()->id;
         $user = User::find($user_id);
-        $expenses = $user->expenses()->orderBy('created_at', 'desc')->get();
+        $accounts = $user->sharedAccounts()->orderBy('account_id')->get();
 
-        return view('expenses.index', ['expenses' => $expenses]);
+        return view('account-share.index', ['accounts' => $accounts]);
     }
 
     /**
@@ -33,11 +31,7 @@ class ExpensesController extends Controller
      */
     public function create()
     {
-
-        $user_id = Auth::user()->id;
-        $categories = User::find($user_id)->categories;
-        $accounts = User::find($user_id)->accounts;
-        return view('expenses.create', ['accounts' => $accounts, 'categories' => $categories]);
+        //
     }
 
     /**
@@ -49,19 +43,22 @@ class ExpensesController extends Controller
     public function store(Request $request)
     {
         $all = $request->all();
-        $categories = $all['categories'];
-        $expense = Expense::create($all);
-        foreach($categories as $category_id){
-            $category = Category::find($category_id);
-            $expense->categories()->attach($category);
+        $requestEmail = $all['email'];
+        $account_id = $all['id_account'];
+        $role = $all['role'];
+        $user = User::where('email', $requestEmail)->first();
+
+        if($user != null){
+            $account = Account::find($account_id);
+            $account->users()->attach($user, ['role' => $role]);
         }
-        $account_id = $all['account_id'];
-        $account = Account::find($account_id);
-        $users = $account->users()->orderBy('user_id')->get();
 
-        event(new NewExpenseNotification($expense, $account, $users));
+        $response = [];
+        $response['id'] = $user->id;
+        $response['email'] = $requestEmail;
+        $response['role'] = $role;
 
-        return redirect()->route('expenses.index');
+        return response()->json($response);
     }
 
     /**
@@ -72,7 +69,7 @@ class ExpensesController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -83,7 +80,10 @@ class ExpensesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $account = Account::find($id);
+        $users = $account->users()->orderBy('user_id')->get();
+
+        return view('account-share.edit', ['account' => $account, 'users' => $users]);
     }
 
     /**
@@ -104,8 +104,19 @@ class ExpensesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $all = $request->all();
+        $user_id = $all['id'];
+        $account_id = $all['account'];
+
+        $account = Account::Find($account_id);
+        if($account->user_id != $user_id){
+            $account->users()->detach($user_id);
+            return ['message' => 'borrado exitoso'];
+        }else{
+            return ['message' => 'borrado fallido'];
+        }
+
     }
 }

@@ -39,7 +39,7 @@
                                     {{ $category->name }}
                                     @endforeach
                                 </td>
-                                <td class="text-green-700 font-medium border-gray-700 border-2">{{ $expense->amount }}</td>
+                                <td class="text-green-700 font-medium border-gray-700 border-2">${{ number_format($expense->amount, 2) }}</td>
                                 <td class="border-gray-700 border-2">{{ $expense->description }}</td>
                             </tr>
                         @endforeach
@@ -49,5 +49,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+            //console.log("ando ready");
+            window.Echo.channel('ExpensesChannel').listen('NewExpenseNotification', (e) => {
+                if(e.account.user_id == {{auth()->user()->id}}){
+                    $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta " + e.account.name);
+                    document.getElementById('notification').style.visibility="visible";
+                    setTimeout(function() {
+                        document.getElementById('notification').style.visibility="hidden";
+                    }, 5000);
+                }else{
+                    e.users.forEach(user => {
+                        if(user.id == {{auth()->user()->id}}){
+                            $('#mensajeNoti').text("se hizo un gasto de " + e.expense.amount + "$ en tu cuenta COMPARTIDA " + e.account.name);
+                            document.getElementById('notification').style.visibility="visible";
+                            setTimeout(function() {
+                                document.getElementById('notification').style.visibility="hidden";
+                            }, 5000);
+                        }
+                    });
+                }
+            });
+        });
+</script>
 @endsection
 

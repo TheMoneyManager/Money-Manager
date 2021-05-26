@@ -52,11 +52,10 @@
                             </tbody>
                         </table>
                         <div class="text-center py-2">
-                            <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none">
-                                <a href="{{ route('expenses.create')}}" class="text-sm">
-                                    Registar gasto
-                                </a>
-                            </button>
+                            <a href="{{ route('expenses.create')}}" class="text-sm">
+                                <button type="submit" class="w-30 px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">Registrar gasto</button>
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -91,7 +90,7 @@
                         </table>
                     </div>
                     <div class="text-center py-4">
-                        <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none">
+                        <button type="submit" class="w-30 px-3 py-4 text-white bg-green-500 rounded-md focus:bg-green-600 focus:outline-none hover:bg-green-600 cursor-pointer">
                             <a href="{{ route('account.index')}}" class="text-sm">
                                 Ver más detalle
                             </a>

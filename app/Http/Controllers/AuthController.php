@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+use Socialite;
+use Str;
+
 class AuthController extends Controller
 {
     public function register(Request $req){
@@ -44,7 +47,24 @@ class AuthController extends Controller
         Auth::logout();
         $req->session()->invalidate();
         $req->session()->regenerateToken();
-        return redirect()->route('auth.register');
+        return redirect()->route('auth.login');
     }
 
+    //Oauth
+    public function github(){
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function githubRedirect(){
+        $user = Socialite::driver('github')->user();
+        $user = User::firstOrCreate([
+            'email' => $user->email
+        ], [
+            'name' => $user->name,
+            'password' => Hash::make(Str::random(24))
+        ]);
+        Auth::login($user, true);
+        return redirect('/dashboard');
+
+    }
 }

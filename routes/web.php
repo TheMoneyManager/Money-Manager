@@ -3,6 +3,7 @@
 use App\Events\NewExpenseNotification;
 use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.register');
+    return view('auth.login');
 });
 
 
@@ -50,4 +51,20 @@ Route::resource('account', 'AccountController');
 
 Route::get('/send/{expense}', function($expense){
     event(new NewExpenseNotification($expense));
+});
+
+
+/* Oauth */
+Route::get('/sign-in/github', 'AuthController@github');
+Route::get('/sign-in/github/redirect', 'AuthController@githubRedirect');
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+    // All providers...
+    $user->getId();
+    $user->getNickname();
+    $user->getName();
+    $user->getEmail();
+    $user->getAvatar();
+    // $user->token
 });

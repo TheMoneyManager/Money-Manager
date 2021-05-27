@@ -6,6 +6,7 @@ use App\Account;
 use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionsController extends Controller
 {
@@ -16,7 +17,18 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+
+        $transactions = $user->transactions()->orderBy('created_at', 'desc')->get();
+
+        $accounts = [];
+        foreach ($transactions as $key) {
+            // -> as it return std object
+            $accounts[$key->id] = Account::find($key->id_CuentaOrigen);
+        }
+
+        return view('transaction.index', ['transactions' => $transactions, 'accounts' => $accounts]);
     }
 
     /**

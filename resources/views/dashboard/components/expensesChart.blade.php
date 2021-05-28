@@ -1,6 +1,21 @@
-<div class="shadow-md h-30">
+@if(count($expenses_amount) === 0)
+  <div class="shadow-md h-30">
+    <div class="h-48 text-center">
+      <p class="text-2xl text-gray-800 ml-10 py-4">No tienes ningún gasto registrado</p>
+      <div class="text-center py-2">
+        <button type="submit" class="px-3 py-4 text-white bg-green-600 focus:bg-green-500 focus:outline-none hover:bg-green-700 cursor-pointer">
+            <a href="{{ route('expenses.create')}}" class="text-sm">
+                Comienza a registrar gastos!
+            </a>
+        </button>
+    </div>
+    </div>
+  </div>  
+@else
+  <div class="shadow-md h-30">
     <div id="piechart"></div>
-</div>  
+  </div>  
+@endif
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

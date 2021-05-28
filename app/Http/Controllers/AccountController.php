@@ -98,7 +98,7 @@ class AccountController extends Controller
         $arr = $request->input();
         $account->name = $arr['name'];
         $account->description = $arr['description'];
-        $account->balance = $arr['balance'];
+        $account->balance = str_replace(',', '', $arr['balance']);
         $account->card_termination = $arr['card_termination'];
         $currency = Currency::where('currency', $arr['currency_id'])->first();
         $account->currency_id = $currency->id;
@@ -121,24 +121,45 @@ class AccountController extends Controller
 
     public function conversion(Request $request)
     {
-        $arr = $request->input();
-        $source_currency = $arr['source_currency'];
-        $destination_currency = $arr['destination_currency'];
-        $amount = $arr['amount'];
+        $data = $request->input();
+        $source_currency = $data['source_currency'];
+        $destination_currency = $data['destination_currency'];
+        $amount = $data['amount'];
 
-        $url = 'https://currency-converter5.p.rapidapi.com/currency/convert';
+        switch($destination_currency)
+        {
+            case('MXN'):
+            case('USD'):
+            case('CAD'):
+                $url = 'http://data.fixer.io/api/latest';
+                $symbols = $source_currency.','.$destination_currency;
 
-        $response = Http::withHeaders([
-            'x-rapidapi-key' => env('CURRENCY_API_KEY'),
-            'x-rapidapi-host' => 'currency-converter5.p.rapidapi.com'
-        ])->get($url, [
-            'format' => 'json',
-            'from' => $source_currency,
-            'to' => $destination_currency,
-            'amount' => $amount
-        ])->json();
+                $response = Http::get($url, [
+                    'access_key' => env('CURRENCY_API_KEY'),
+                    'symbols' => $symbols
+                ])->json();
 
-        return $response;
+                // Api sólo maneja euros
+                // 1 - convertir moneda de origen a euros
+                $amount /= $response['rates'][$source_currency];
+                // 2 - convertir de euros a moneda de destino
+                $amount *= $response['rates'][$destination_currency];
+                break;
+            case('BTC'):
+            case('ETH'):
+            case('DOGE'):
+                $url = 'https://min-api.cryptocompare.com/data/pricemulti';
 
+                $response = Http::withHeaders([
+                    'authorization' => env('CRYPTO_API_KEY')
+                ])->get($url, [
+                    'fsyms' => $destination_currency,
+                    'tsyms' => $source_currency
+                ])->json();
+
+                $amount /= $response[$destination_currency][$source_currency];
+        }
+
+        return ['amount' => number_format($amount, 2)];
     }
 }

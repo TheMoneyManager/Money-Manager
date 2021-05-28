@@ -15,8 +15,8 @@ class CreateCurrenciesTable extends Migration
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->enum('currency', ['MXN', 'USD', 'CAD']);
-            $table->enum('currency_name', ['Peso Mexicano', 'Dolar Canadiense', 'Dolar Estadounidense']);
+            $table->string('currency');
+            $table->string('currency_name');
             $table->timestamps();
         });
     }

@@ -20,6 +20,9 @@
                         @foreach ($accounts as $item)
                                 <option value="{{$item->id}}">{{ $item->name }}</option>
                         @endforeach
+                        @foreach ($shared_accounts as $item)
+                                <option value="{{$item->id}}">{{ $item->name }}</option>
+                        @endforeach
                     </select>
                     </div>
                     <div class="w-full">

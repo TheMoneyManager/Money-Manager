@@ -37,7 +37,9 @@ class ExpensesController extends Controller
         $user_id = Auth::user()->id;
         $categories = User::find($user_id)->categories;
         $accounts = User::find($user_id)->accounts;
-        return view('expenses.create', ['accounts' => $accounts, 'categories' => $categories]);
+        $shared_accounts = User::find($user_id)->sharedAccounts()->where('role', 'admin')->get();
+
+        return view('expenses.create', ['accounts' => $accounts, 'categories' => $categories, 'shared_accounts' => $shared_accounts]);
     }
 
     /**

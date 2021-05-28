@@ -8,7 +8,10 @@
     </div>
 
     <div class="w-8/12 h-4/6 mx-auto mt-6">
-        <table class="w-full border-gray-700 border-2">
+        <div class="py-2">
+            <input type="text" class="w-full border-green-700 border-2" id="expenseSearch" onkeyup="expenseSearchFun()" placeholder="Busca la cuenta deseada para ver sus transacciones..." title="Escribe la cuenta que quieres buscar"/>
+        </div>
+        <table class="w-full border-gray-700 border-2" id="expenseTable">
             <thead>
                 <tr class="table-fixed bg-gray-200 border-gray-700 border-2">
                     <th class="pt-2 pb-2 font-medium border-gray-700 border-2">ID CUENTA ORIGEN</th>
@@ -20,10 +23,10 @@
             <tbody class="text-center">
                 @foreach ($transactions as $transaction)
                     <tr class="border border-gray-300">
-                        <th class="font-normal pt-4 pb-4 w-2/12 border-gray-700 border-2">{{ $transaction->id_CuentaOrigen}}</th>
-                        <th class="font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2">{{ $accounts[$transaction->id]['name'] }}</th>
-                        <th class="font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2">{{ $transaction->addresee }}</th>
-                        <th class="font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2 text-red-600">- ${{number_format($transaction->amount, 2)}}</th>
+                        <td class="font-normal pt-4 pb-4 w-2/12 border-gray-700 border-2">{{ $transaction->id_CuentaOrigen}}</td>
+                        <td class="font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2">{{ $accounts[$transaction->id]['name'] }}</td>
+                        <td class="font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2">{{ $transaction->addresee }}</td>
+                        <td class="font-normal pt-4 pb-4 w-4/12 border-gray-700 border-2 text-red-600">- ${{number_format($transaction->amount, 2)}}</td>
                     </tr>
                 @endforeach
             </tbody>

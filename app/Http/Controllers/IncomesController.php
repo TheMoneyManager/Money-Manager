@@ -49,6 +49,10 @@ class IncomesController extends Controller
         $all = $request->all();
         $income = Income::create($all);
 
+        $account_id = $all['account_id'];
+        $account = Account::find($account_id);
+        $balance = $account->balance + $income->amount;
+        $account->update(['balance' => $balance]);
         return redirect()->route('incomes.index');
     }
 

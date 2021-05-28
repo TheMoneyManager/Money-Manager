@@ -51,6 +51,8 @@ class ExpensesController extends Controller
         $all = $request->all();
         $categories = $all['categories'];
         $expense = Expense::create($all);
+
+        //ddd($expense);
         foreach($categories as $category_id){
             $category = Category::find($category_id);
             $expense->categories()->attach($category);
@@ -58,6 +60,9 @@ class ExpensesController extends Controller
         $account_id = $all['account_id'];
         $account = Account::find($account_id);
         $users = $account->users()->orderBy('user_id')->get();
+
+        $balance = $account->balance - $expense->amount;
+        $account->update(['balance' => $balance]);
 
         event(new NewExpenseNotification($expense, $account, $users));
 

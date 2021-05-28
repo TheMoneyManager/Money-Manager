@@ -77,8 +77,7 @@
                 }
             })
             .done(function(response) {
-                console.log(response['rates'][destination]['rate_for_amount']);
-                $('#balance').val(response['rates'][destination]['rate_for_amount']);
+                $('#balance').val(response['amount']);
             })
             .fail(function(jqXHR, response) {
                 console.log('Fallido', response);

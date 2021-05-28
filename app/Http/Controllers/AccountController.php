@@ -119,26 +119,50 @@ class AccountController extends Controller
         return redirect()->route('account.index');
     }
 
+    // public function conversion(Request $request)
+    // {
+    //     $arr = $request->input();
+    //     $source_currency = $arr['source_currency'];
+    //     $destination_currency = $arr['destination_currency'];
+    //     $amount = $arr['amount'];
+
+    //     $url = 'https://currency-converter5.p.rapidapi.com/currency/convert';
+
+    //     $response = Http::withHeaders([
+    //         'x-rapidapi-key' => env('CURRENCY_API_KEY'),
+    //         'x-rapidapi-host' => 'currency-converter5.p.rapidapi.com'
+    //     ])->get($url, [
+    //         'format' => 'json',
+    //         'from' => $source_currency,
+    //         'to' => $destination_currency,
+    //         'amount' => $amount
+    //     ])->json();
+
+    //     return $response;
+
+    // }
+
     public function conversion(Request $request)
     {
-        $arr = $request->input();
-        $source_currency = $arr['source_currency'];
-        $destination_currency = $arr['destination_currency'];
-        $amount = $arr['amount'];
+        $data = $request->input();
+        $source_currency = $data['source_currency'];
+        $destination_currency = $data['destination_currency'];
+        $amount = $data['amount'];
 
-        $url = 'https://currency-converter5.p.rapidapi.com/currency/convert';
+        $url = 'http://data.fixer.io/api/latest';
+        $symbols = $source_currency.','.$destination_currency;
 
-        $response = Http::withHeaders([
-            'x-rapidapi-key' => env('CURRENCY_API_KEY'),
-            'x-rapidapi-host' => 'currency-converter5.p.rapidapi.com'
-        ])->get($url, [
-            'format' => 'json',
-            'from' => $source_currency,
-            'to' => $destination_currency,
-            'amount' => $amount
+        $response = Http::get($url, [
+            'access_key' => env('CURRENCY_API_KEY'),
+            'symbols' => $symbols
         ])->json();
 
-        return $response;
+        // Api sólo maneja euros
+        // 1 - convertir moneda de origen a euros
+        $amount /= $response['rates'][$source_currency];
+        // 2 - convertir de euros a moneda de destino
+        $amount *= $response['rates'][$destination_currency];
 
+        return ['amount' => number_format($amount, 2)];
     }
 }

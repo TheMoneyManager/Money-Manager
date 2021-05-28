@@ -98,7 +98,7 @@ class AccountController extends Controller
         $arr = $request->input();
         $account->name = $arr['name'];
         $account->description = $arr['description'];
-        $account->balance = $arr['balance'];
+        $account->balance = str_replace(',', '', $arr['balance']);
         $account->card_termination = $arr['card_termination'];
         $currency = Currency::where('currency', $arr['currency_id'])->first();
         $account->currency_id = $currency->id;

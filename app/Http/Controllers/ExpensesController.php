@@ -49,14 +49,16 @@ class ExpensesController extends Controller
     public function store(Request $request)
     {
         $all = $request->all();
-        $categories = $all['categories'];
         $expense = Expense::create($all);
 
-        //ddd($expense);
-        foreach($categories as $category_id){
-            $category = Category::find($category_id);
-            $expense->categories()->attach($category);
+        $categories = $all['categories'] ?? null;
+        if($categories != null){
+            foreach($categories as $category_id){
+                $category = Category::find($category_id);
+                $expense->categories()->attach($category);
+            }
         }
+
         $account_id = $all['account_id'];
         $account = Account::find($account_id);
         $users = $account->users()->orderBy('user_id')->get();

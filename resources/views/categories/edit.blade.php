@@ -17,7 +17,7 @@
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
             <div class="grid grid-cols-3 flex items-center">
                 <label for="name">Nombre</label>
-                <input type="text" name="name" class="col-span-2 bg-gray-100  placeholder-gray-400 border-0" placeholder="{{ $category->name }}">
+                <input required type="text" name="name" class="col-span-2 bg-gray-100  placeholder-gray-400 border-0" placeholder="{{ $category->name }}">
             </div>
             <div class="grid grid-cols-3">
                 <div class="flex justify-center">

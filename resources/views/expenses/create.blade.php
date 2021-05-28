@@ -16,7 +16,7 @@
                 <div class="grid grid-cols-2 gap-12">
                     <div class="w-full">
                         <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Cuenta de Origen</h3>
-                        <select name="account_id" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                        <select required name="account_id" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                         @foreach ($accounts as $item)
                                 <option value="{{$item->id}}">{{ $item->name }}</option>
                         @endforeach
@@ -24,12 +24,12 @@
                     </div>
                     <div class="w-full">
                         <h3 class="text-gray-600 block w-6/12 mt-10 font-medium">Monto</h3>
-                        <input type="text" placeholder="$300" name="amount" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400">
+                        <input required type="text" placeholder="$300" name="amount" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 placeholder-gray-400">
                     </div>
                 </div>
 
                 <h3 class="text-gray-600 block w-2/12 mt-10 font-medium">Descripción</h3>
-                <textarea name="description" placeholder="Visita al restaurante semanal" cols="30" rows="10" class="w-full rounded-lg bg-gray-100 border-0 inline-block placeholder-gray-400"></textarea>
+                <textarea required name="description" placeholder="Visita al restaurante semanal" cols="30" rows="10" class="w-full rounded-lg bg-gray-200 border-0 inline-block placeholder-gray-400"></textarea>
                 <div class="text-right py-5">
                     <a class="text-green-600 underline self-end" href="{{ route('categories.index')}}" class="text-sm">
                         Ver Categorias

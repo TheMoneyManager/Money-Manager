@@ -35,7 +35,9 @@ class IncomesController extends Controller
 
         $user_id = Auth::user()->id;
         $accounts = User::find($user_id)->accounts;
-        return view('incomes.create', ['accounts' => $accounts]);
+        $shared_accounts = User::find($user_id)->sharedAccounts()->where('role', 'admin')->get();
+
+        return view('incomes.create', ['accounts' => $accounts, 'shared_accounts' => $shared_accounts]);
     }
 
     /**
